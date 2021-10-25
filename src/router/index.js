@@ -1,5 +1,6 @@
 import VueRouter from "vue-router";
 import Login from '../components/Login.vue';
+import Home from '../components/Home.vue';
 
 export default new VueRouter({
     mode: 'history',
@@ -7,6 +8,10 @@ export default new VueRouter({
         {
             path: '/login',
             component: Login
+        },
+        {
+            path: '/home',
+            component: Home
         },
         {
             path: '/',

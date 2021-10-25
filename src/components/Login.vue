@@ -6,16 +6,16 @@
         src="../assets/images/02_login_icon.png"
         :class="{ img_active: isActive }"
       />
-      <form>
+      <form @submit.prevent>
         <div class="form-control">
           <input type="text" required v-model="username" />
-          <label>账号</label>
+          <label ref="label">账号</label>
         </div>
         <div class="form-control">
           <input type="password" required v-model="password" />
-          <label>密码</label>
+          <label ref="label">密码</label>
         </div>
-        <button class="btn">Login</button>
+        <button class="btn" @click="goHome">Login</button>
       </form>
     </div>
   </div>
@@ -30,13 +30,17 @@ export default {
       password: "",
     };
   },
+  methods: {
+    goHome: function () {
+      this.$router.push("home");
+    },
+  },
   mounted() {
     setTimeout(() => {
       this.isActive = true;
     });
 
     const labels = document.querySelectorAll(".form-control label");
-    console.log(labels);
     labels.forEach((label) => {
       label.innerHTML = label.innerText
         .split("")
@@ -97,7 +101,7 @@ form {
 
 .form-control {
   width: 200px;
-  margin: 20px 0 40px;
+  margin: 20px 0 30px;
   position: relative;
 }
 
@@ -109,7 +113,7 @@ form {
   width: 100%;
   padding: 15px 0;
   font-size: 18px;
-  color: white;
+  color: #ffa300;
 }
 
 .form-control input:focus {

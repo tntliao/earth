@@ -102,9 +102,7 @@ section {
 	display: block;
 }
 
-body {
-	line-height: 1;
-}
+
 
 ol,
 ul {
@@ -127,4 +125,18 @@ q:after {
 table {
 	border-collapse: collapse;
 	border-spacing : 0;
+}
+
+@font-face {
+	font-family: myFont;
+	src        : url('../font/myFont.ttf');
+	src        : url('../font/myFont.ttf') format('embedded-opentype'),
+		url('../font/myFont.ttf') format('woff'),
+		url('../font/myFont.ttf') format('truetype'),
+		url('../font/myFont.ttf') format('svg');
+}
+
+* {
+	line-height: 1;
+	font-family: myFont !important;
 }
