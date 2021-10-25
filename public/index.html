@@ -4,31 +4,30 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <title>
-    <%= htmlWebpackPlugin.options.title %>
-  </title>
+  <title>保护地球环境</title>
 </head>
 
 <body>
   <noscript>
-    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-        Please enable it to continue.</strong>
+    <strong>你的浏览器不支持script标签</strong>
   </noscript>
   <div id="app"></div>
-  <!-- built files will be auto injected -->
 </body>
 <script>
   window.onload = function () {
-    const width = document.documentElement.clientWidth / 100;
+    let width = document.documentElement.clientWidth / 100;
+    if (width <= 10) width = 10
     document.querySelector('html').style.fontSize = width + 'px';
     window.onresize = function () {
-      const width = document.documentElement.clientWidth / 100;
+      let width = document.documentElement.clientWidth / 100;
+      if (width <= 10) width = 10
       document.querySelector('html').style.fontSize = width + 'px';
     }
   }
 </script>
+<style>
+</style>
 
 </html>

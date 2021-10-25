@@ -3,7 +3,8 @@ import Login from '../components/Login.vue';
 import Home from '../components/Home.vue';
 
 export default new VueRouter({
-    mode: 'history',
+    mode: 'hash',
+    base: process.env.BASE_URL,
     routes: [
         {
             path: '/login',
