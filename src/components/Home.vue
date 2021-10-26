@@ -1,7 +1,6 @@
 <template>
   <div class="home_container">
     <Header />
-    <div class="barrierw_all"></div>
     <Main />
   </div>
 </template>
@@ -26,8 +25,4 @@ export default {
 </script>
 
 <style>
-.barrierw_all {
-  width: 100%;
-  height: 4.5rem;
-}
 </style>

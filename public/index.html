@@ -16,14 +16,17 @@
   <div id="app"></div>
 </body>
 <script>
+  // let timer;
   window.onload = function () {
     let width = document.documentElement.clientWidth / 100;
-    if (width <= 10) width = 10
     document.querySelector('html').style.fontSize = width + 'px';
+
     window.onresize = function () {
       let width = document.documentElement.clientWidth / 100;
-      if (width <= 10) width = 10
       document.querySelector('html').style.fontSize = width + 'px';
+      /* clearTimeout(timer)
+      timer = setTimeout(() => {
+      }, 150) */
     }
   }
 </script>

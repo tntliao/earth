@@ -26,11 +26,9 @@ export default {
 
 <style scoped>
 .header_node {
-  width: 100vw;
   height: 4.5rem !important;
   border-bottom: 2px solid #ededed;
   background-color: white;
-  position: fixed;
   z-index: 9999;
 }
 .title_box {
@@ -55,7 +53,10 @@ export default {
   min-width: 25px;
   min-height: 25px;
   margin: 0.2rem 5rem;
-  transform: 0.3s;
+  transition: 0.5s;
+}
+.title_box img:hover {
+  transform: rotateZ(180deg);
 }
 .head_title.head_left {
   transform: translateX(0);
