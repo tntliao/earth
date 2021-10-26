@@ -27,6 +27,7 @@ export default {
 <style scoped>
 .header_node {
   height: 4.5rem !important;
+  min-height: 40px;
   border-bottom: 2px solid #ededed;
   background-color: white;
   z-index: 9999;
