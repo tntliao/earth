@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
 import Login from '../components/Login.vue';
-import Home from '../components/Home.vue';
+import Home from '../components/Home';
 
 export default new VueRouter({
     mode: 'hash',
@@ -8,6 +8,10 @@ export default new VueRouter({
     routes: [
         {
             path: '/login',
+            component: Login
+        },
+        {
+            path: '/register',
             component: Login
         },
         {
