@@ -39,8 +39,8 @@ export default {
   data() {
     return {
       isActive: false,
-      username: "",
-      password: "",
+      username: "admin",
+      password: "admin",
       path: "",
     };
   },
@@ -55,7 +55,7 @@ export default {
       ) {
         this.$router.push("home");
         this.$message({
-          message: "欢迎登录，保护环境你我做起",
+          message: "欢迎登录，爱护环境你我做起",
           type: "success",
           center: true,
           offset: 88,
@@ -83,12 +83,14 @@ export default {
       }
       localStorage.setItem(this.username + "username", this.username);
       localStorage.setItem(this.password + "password", this.password);
-      this.path = "/login";
       this.$message({
-        message: "账号注册成功",
+        message: "账号注册成功3秒后返回登录页",
         type: "success",
         center: true,
       });
+      setTimeout(() => {
+        this.path = "/login";
+      }, 3000);
     },
     goLogin: function () {
       if (this.path === "/login") return;
