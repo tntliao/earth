@@ -27,11 +27,11 @@
       </div>
     </div>
     <div class="slogan"></div>
-
-    <div class="change" ref="change_ref">
+    <div class="change" id="changeNode">
       <h2 class="title">地球 Earth</h2>
       <div class="change_item">
-        <h1>{{ scrollTop }}</h1>
+        <h1>元素到顶部 {{ changeNodeTop }}</h1>
+        <h1>滚动条高度 {{ scrollTop }}</h1>
         <h2 class="item_title">减少排放</h2>
         <p class="detail">气候的保护</p>
         <p class="detail">有利于人类的发展</p>
@@ -43,13 +43,13 @@
           alt=""
           srcset=""
         />
+        <img src="../../assets/images/02_contrast_1.jpg" alt="" srcset="" />
         <img
           :class="{ active: active }"
-          src="../../assets/images/02_contrast_1.jpg"
+          src="../../assets/images/02_contrast_2.jpg"
           alt=""
           srcset=""
         />
-        <img src="../../assets/images/02_contrast_2.jpg" alt="" srcset="" />
       </div>
     </div>
   </div>
@@ -66,14 +66,26 @@ export default {
     };
   },
   mounted() {
-    this.changeNodeTop = this.$refs.change_ref.offsetTop;
+    const _this = this;
+    const changeNode = document.getElementById("changeNode");
+    window.timer = setInterval(() => {
+      this.changeNodeTop = changeNode.offsetTop;
+    }, 1000);
 
     window.onscroll = function () {
-      this.scrollTop = document.documentElement.scrollTop;
+      _this.scrollTop = document.documentElement.scrollTop;
+      if (
+        _this.scrollTop >= _this.changeNodeTop &&
+        _this.scrollTop <= _this.changeNodeTop * 1.25
+      ) {
+        _this.active = true;
+      } else {
+        _this.active = false;
+      }
     };
-    window.onresize = function () {
-    
-    };
+  },
+  destroyed() {
+    clearInterval(window.timer);
   },
 };
 </script>
@@ -113,6 +125,7 @@ export default {
       overflow: hidden;
       position: relative;
       cursor: pointer;
+      border-radius: 0.2rem;
 
       .item_title {
         position: absolute;
@@ -210,8 +223,8 @@ export default {
       position: absolute;
       height: 20rem;
       top: 0;
-      transition: 0.5s;
-      border-radius: 4px;
+      transition: 1s;
+      border-radius: 0.2rem;
       &:nth-of-type(1) {
         right: 10rem;
         opacity: 1;
