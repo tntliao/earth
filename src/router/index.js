@@ -1,7 +1,7 @@
 import VueRouter from "vue-router";
 import Login from '../components/Login.vue';
 import Home from '../components/Home';
-
+import Detail from '../components/Detail.vue'
 export default new VueRouter({
     mode: 'hash',
     base: process.env.BASE_URL,
@@ -17,6 +17,10 @@ export default new VueRouter({
         {
             path: '/home',
             component: Home
+        },
+        {
+            path: '/home/detail',
+            component: Detail
         },
         {
             path: '/',

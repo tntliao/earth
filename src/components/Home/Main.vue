@@ -5,22 +5,22 @@
     </div>
     <div class="earth_container">
       <h2 class="earth_title">地球 Earth</h2>
-      <div class="item">
+      <div class="item" @click="goDetail(0)">
         <h3 class="item_title">海洋</h3>
         <p class="deatil">约占地球表面积的71%</p>
         <img src="../../assets/images/01_banner.png" alt="" />
       </div>
-      <div class="item">
+      <div class="item" @click="goDetail(1)">
         <h3 class="item_title">冰川</h3>
         <p class="deatil">两年融化一座珠穆朗玛峰的量</p>
         <img src="../../assets/images/02_banner.png" alt="" />
       </div>
-      <div class="item">
+      <div class="item" @click="goDetail(2)">
         <h3 class="item_title">沙漠</h3>
         <p class="deatil">破坏土地平衡变成沙子</p>
         <img src="../../assets/images/03_banner.png" alt="" />
       </div>
-      <div class="item">
+      <div class="item" @click="goDetail(3)">
         <h3 class="item_title">雨林</h3>
         <p class="deatil">每年减少约1700公顷</p>
         <img src="../../assets/images/04_banner.png" alt="" />
@@ -64,6 +64,20 @@ export default {
       changeNodeTop: "",
       scrollTop: "",
     };
+  },
+  methods: {
+    goDetail: function (val) {
+      const itemNode = document.getElementsByClassName("item")[val];
+      const width = itemNode.offsetWidth;
+      const height = itemNode.offsetHeight;
+      const left = itemNode.offsetLeft;
+      const top = itemNode.offsetLeft;
+      console.log(left, top, width, height);
+      this.$router.push({
+        path: "/home/detail",
+        query: { val, left, top, width, height },
+      });
+    },
   },
   mounted() {
     const _this = this;
@@ -196,7 +210,7 @@ export default {
   float: left;
   width: 100%;
   padding-top: 1rem;
-  height: 1600px;
+  height: 2000px;
   background-color: rgb(0, 0, 0);
 
   .title {
