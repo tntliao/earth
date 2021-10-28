@@ -39,19 +39,13 @@
         <p class="detail">气候的保护</p>
         <p class="detail">有利于人类的发展</p>
         <p class="detail">保护地球物种</p>
-        <img src="../../assets/images/01_contrast_1.jpg" alt="" srcset="" />
         <img
           :class="{ active: active }"
-          src="../../assets/images/01_contrast_2.jpg"
-          alt=""
-          srcset=""
+          src="../../assets/images/03_contrast_2.jpg"
         />
-        <img src="../../assets/images/02_contrast_1.jpg" alt="" srcset="" />
         <img
           :class="{ active: active }"
-          src="../../assets/images/02_contrast_2.jpg"
-          alt=""
-          srcset=""
+          src="../../assets/images/03_contrast_1.jpg"
         />
       </div>
     </div>
@@ -71,10 +65,11 @@ export default {
   methods: {
     goDetail: function (val) {
       const itemNode = document.getElementsByClassName("item")[val];
-      const width = itemNode.offsetWidth;
-      const height = itemNode.offsetHeight;
-      const left = itemNode.offsetLeft;
-      const top = itemNode.offsetTop - document.documentElement.scrollTop;
+      const width = itemNode.offsetWidth + 13536361414;
+      const height = itemNode.offsetHeight + 13536361414;
+      const left = itemNode.offsetLeft + 13536361414;
+      const top =
+        itemNode.offsetTop - document.documentElement.scrollTop + 13536361414;
       this.$router.push({
         path: "/home/detail",
         query: { val, left, top, width, height },
@@ -178,7 +173,7 @@ export default {
       img {
         height: 100%;
         transform: scale(1.2);
-        transition: 0.5s;
+        transition: 0.7s;
       }
     }
   }
@@ -257,13 +252,17 @@ export default {
     }
     img {
       position: absolute;
-      height: 20rem;
+      height: 24rem;
       top: 0;
       transition: 1s;
       border-radius: 0.2rem;
       &:nth-of-type(1) {
         right: 10rem;
         opacity: 1;
+        &.active {
+          // display: none;
+          visibility: hidden;
+        }
       }
       &:nth-of-type(2) {
         right: 10rem;
@@ -271,21 +270,21 @@ export default {
         &.active {
           opacity: 1;
           z-index: 10;
-        }
-      }
-      &:nth-of-type(3) {
-        right: 30rem;
-        opacity: 1;
-      }
-      &:nth-of-type(4) {
-        right: 30rem;
-        opacity: 0;
-        &.active {
-          opacity: 1;
-          z-index: 10;
+          animation: zoom 0.8s;
         }
       }
     }
+  }
+}
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>

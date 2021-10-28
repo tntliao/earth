@@ -22,10 +22,10 @@ export default {
       isActive: false,
       val: this.$route.query.val,
       styObj: {
-        width: this.$route.query.width + "px",
-        height: this.$route.query.height + "px",
-        left: this.$route.query.left + "px",
-        top: this.$route.query.top + "px",
+        width: this.$route.query.width - 13536361414 + "px",
+        height: this.$route.query.height - 13536361414 + "px",
+        left: this.$route.query.left - 13536361414 + "px",
+        top: this.$route.query.top - 13536361414 + "px",
       },
       detailInfo: [
         {
@@ -77,9 +77,9 @@ export default {
     position: absolute;
     background: antiquewhite;
     overflow: hidden;
-    transition: 0.5s cubic-bezier(0.42, 0, 1, 1);
+    transition: 0.5s;
     img {
-      margin: 2rem;
+      margin: 4rem 2rem 0;
       width: 21rem;
       height: 13rem;
       background-size: cover;

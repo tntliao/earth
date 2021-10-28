@@ -5,21 +5,42 @@
       <img src="../../assets/images/02_login_icon.png" alt="" srcset="" />
       <h2 class="head_title" :class="{ reset: isActive }">环境</h2>
     </div>
+    <div class="userName">
+      <h2>{{ userName }}</h2>
+      <span class="iconfont icon-tuichu1" @click="exitLogin"></span>
+    </div>
   </div>
 </template>
 
 <script>
+import jwt from "jsonwebtoken";
 export default {
   name: "Header",
   data() {
     return {
       isActive: false,
+      userName: jwt.verify(this.$route.query.username, "gdgxjsjljj"),
     };
   },
   mounted() {
     setTimeout(() => {
       this.isActive = true;
     });
+  },
+  methods: {
+    exitLogin: function () {
+      this.$confirm("是否退出登录, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(() => {
+        this.$router.replace("login");
+        this.$message({
+          type: "success",
+          message: "已退出登录!",
+        });
+      });
+    },
   },
 };
 </script>
@@ -31,6 +52,7 @@ export default {
   border-bottom: 2px solid #ededed;
   background-color: white;
   z-index: 9999;
+  position: relative;
 
   .title_box {
     height: 100%;
@@ -64,6 +86,25 @@ export default {
       }
     }
   }
+  .userName {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 16rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    h2 {
+      color: #ffa300;
+    }
+    span {
+      margin-left: 1.5rem;
+      font-size: 1.7rem;
+      transition: 0.4s;
+      transform: rotateZ(180deg);
+      cursor: pointer;
+    }
+  }
 }
-
 </style>

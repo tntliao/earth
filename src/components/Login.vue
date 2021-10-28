@@ -34,6 +34,7 @@
   </div>
 </template>
 <script>
+import jwt from "jsonwebtoken";
 export default {
   name: "Login",
   data() {
@@ -49,11 +50,17 @@ export default {
       const username = localStorage.getItem(this.username + "username");
       const password = localStorage.getItem(this.password + "password");
 
+      var token = jwt.sign("admin", "shhhhh");
+      console.log(jwt.verify(token, "shhhhh"));
+
       if (
         (this.username === username && this.password === password) ||
         (this.username === "admin" && this.username === "admin")
       ) {
-        this.$router.push("home");
+        this.$router.push({
+          path: "home",
+          query: { username: jwt.sign(this.username, "gdgxjsjljj") },
+        });
         this.$message({
           message: `欢迎${this.username}为保护环境付出一份力量`,
           type: "success",
