@@ -26,9 +26,12 @@
         <img src="../../assets/images/04_banner.png" alt="" />
       </div>
     </div>
-    <div class="slogan"></div>
+    <div class="slogan">
+      <h2 class="slogan_title">爱护环境</h2>
+      <h2 class="slogan_title">你我做起</h2>
+    </div>
     <div class="change" id="changeNode">
-      <h2 class="title">地球 Earth</h2>
+      <!-- <h2 class="title">地球 Earth</h2> -->
       <div class="change_item">
         <h1>元素到顶部 {{ changeNodeTop }}</h1>
         <h1>滚动条高度 {{ scrollTop }}</h1>
@@ -72,7 +75,6 @@ export default {
       const height = itemNode.offsetHeight;
       const left = itemNode.offsetLeft;
       const top = itemNode.offsetTop - document.documentElement.scrollTop;
-      console.log(left, top, width, height);
       this.$router.push({
         path: "/home/detail",
         query: { val, left, top, width, height },
@@ -140,6 +142,7 @@ export default {
       position: relative;
       cursor: pointer;
       border-radius: 0.2rem;
+      animation: move 0.5s;
 
       .item_title {
         position: absolute;
@@ -180,6 +183,14 @@ export default {
     }
   }
 }
+@keyframes move {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 @media screen and (min-width: 821px) {
   .earth_container .item:hover img {
     transform: scale(1);
@@ -200,10 +211,27 @@ export default {
 }
 .slogan {
   width: 100%;
-  height: 14rem;
+  height: 20rem;
   float: left;
-  margin: 1rem 0;
-  border: 1px solid black;
+  margin-top: 1rem;
+  background-image: url("../../assets/images/04_banner.jpg");
+  background-size: cover;
+  position: relative;
+
+  .slogan_title {
+    position: absolute;
+    font-size: 2.5rem;
+    transition: 0.5s;
+    color: cornsilk;
+    &:nth-of-type(1) {
+      top: 6rem;
+      left: 38rem;
+    }
+    &:nth-of-type(2) {
+      top: 10rem;
+      left: 44rem;
+    }
+  }
 }
 
 .change {
@@ -213,16 +241,10 @@ export default {
   height: 2000px;
   background-color: rgb(0, 0, 0);
 
-  .title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: cornsilk;
-    margin: 1rem 0 5rem;
-  }
   .change_item {
     width: 78rem;
     height: 400px;
-    margin: 0 auto;
+    margin: 10rem auto 0;
     color: cornsilk;
     position: relative;
 

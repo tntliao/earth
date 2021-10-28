@@ -55,7 +55,7 @@ export default {
       ) {
         this.$router.push("home");
         this.$message({
-          message: "欢迎登录，爱护环境你我做起",
+          message: `欢迎${this.username}为保护环境付出一份力量`,
           type: "success",
           center: true,
           offset: 88,
@@ -229,6 +229,11 @@ export default {
   }
 }
 
+@media screen and (max-width: 450px) {
+  .text {
+    font-size: 2.7rem;
+  }
+}
 .form-control input:focus + label span,
 .form-control input:valid + label span {
   transform: translateY(-30px);
