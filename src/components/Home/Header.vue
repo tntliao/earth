@@ -7,7 +7,12 @@
     </div>
     <div class="userName">
       <h2>{{ userName }}</h2>
-      <span class="iconfont icon-tuichu1" @click="exitLogin"></span>
+      <img
+        src="../../assets/images/exit.png"
+        alt=""
+        srcset=""
+        @click="exitLogin"
+      />
     </div>
   </div>
 </template>
@@ -98,9 +103,9 @@ export default {
     h2 {
       color: #ffa300;
     }
-    span {
+    img {
       margin-left: 1.5rem;
-      font-size: 1.7rem;
+      width: 1.7rem;
       transition: 0.4s;
       transform: rotateZ(180deg);
       cursor: pointer;

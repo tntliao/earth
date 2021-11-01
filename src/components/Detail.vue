@@ -1,6 +1,7 @@
 <template>
   <div class="detail_container">
     <div class="left" :style="styObj">
+      <img src="../assets/images/exit.png" alt="" />
       <img :src="detailInfo[val].imgurl" alt="" srcset="" />
       <h2 class="left_title">{{ detailInfo[val].title }}</h2>
       <p class="left_detail">{{ detailInfo[val].detail }}</p>
@@ -65,7 +66,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .detail_container {
   width: 100vw;
   height: 100vh;
@@ -79,12 +80,21 @@ export default {
     overflow: hidden;
     transition: 0.5s;
     img {
-      margin: 4rem 2rem 0;
-      width: 21rem;
-      height: 13rem;
-      background-size: cover;
-      border-radius: 0.3rem;
-      transition: 0.5s;
+      &:nth-of-type(1) {
+        position: absolute;
+        left: 2rem;
+        top: 2rem;
+        width: 1.7rem;
+        cursor: pointer;
+      }
+      &:nth-of-type(2) {
+        margin: 5rem 2rem 0;
+        width: 21rem;
+        height: 13rem;
+        background-size: cover;
+        border-radius: 0.3rem;
+        transition: 0.5s;
+      }
     }
     .left_title {
       text-align: center;

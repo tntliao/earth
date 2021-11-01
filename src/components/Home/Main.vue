@@ -30,23 +30,55 @@
       <h2 class="slogan_title">爱护环境</h2>
       <h2 class="slogan_title">你我做起</h2>
     </div>
-    <div class="change" id="changeNode">
-      <!-- <h2 class="title">地球 Earth</h2> -->
+    <div class="change">
       <div class="change_item">
-        <h1>元素到顶部 {{ changeNodeTop }}</h1>
-        <h1>滚动条高度 {{ scrollTop }}</h1>
-        <h2 class="item_title">减少排放</h2>
-        <p class="detail">气候的保护</p>
-        <p class="detail">有利于人类的发展</p>
-        <p class="detail">保护地球物种</p>
-        <img
-          :class="{ active: active }"
-          src="../../assets/images/03_contrast_2.jpg"
-        />
-        <img
-          :class="{ active: active }"
-          src="../../assets/images/03_contrast_1.jpg"
-        />
+        <div class="left">
+          <h2 class="item_title">减少排放</h2>
+          <p class="detail">气候的保护</p>
+          <p class="detail">有利于人类的发展</p>
+          <p class="detail">保护地球物种</p>
+        </div>
+        <div class="img_right">
+          <img
+            :class="{ active: active_01 }"
+            src="../../assets/images/01_contrast_2.jpg"
+          />
+          <img
+            :class="{ active: active_01 }"
+            src="../../assets/images/01_contrast_1.jpg"
+          />
+        </div>
+      </div>
+      <div class="change_item">
+        <div class="right">
+          <h2 class="item_title">保护海洋</h2>
+          <p class="detail">不要随手乱堆垃圾</p>
+          <p class="detail">请热爱我们的故乡</p>
+          <p class="detail">共建美好未来</p>
+        </div>
+        <div class="img_left">
+          <img
+            class="garbage"
+            src="../../assets/images/01_garbage.png"
+            alt=""
+          />
+          <img
+            class="garbage"
+            src="../../assets/images/02_garbage.png"
+            alt=""
+          />
+          <img
+            class="garbage"
+            src="../../assets/images/03_garbage.png"
+            alt=""
+          />
+          <img
+            class="garbage"
+            src="../../assets/images/04_garbage.png"
+            alt=""
+          />
+          <img src="../../assets/images/02_contrast_1.jpg" />
+        </div>
       </div>
     </div>
   </div>
@@ -57,8 +89,10 @@ export default {
   name: "Main",
   data() {
     return {
-      active: false,
-      changeNodeTop: "",
+      active_01: false,
+      active_02: false,
+      changeNodeTop_01: "",
+      changeNodeTop_02: "",
       scrollTop: "",
     };
   },
@@ -78,21 +112,32 @@ export default {
   },
   mounted() {
     const _this = this;
-    const changeNode = document.getElementById("changeNode");
+    const changeNode = document.getElementsByClassName("change_item");
     window.timer = setInterval(() => {
-      this.changeNodeTop = changeNode.offsetTop;
+      this.changeNodeTop_01 =
+        changeNode[0].offsetTop - changeNode[0].offsetTop * 0.125;
+      this.changeNodeTop_02 =
+        changeNode[1].offsetTop - changeNode[1].offsetTop * 0.125;
     }, 1000);
 
     window.onscroll = function () {
       _this.scrollTop = document.documentElement.scrollTop;
+      
       if (
-        _this.scrollTop >= _this.changeNodeTop &&
-        _this.scrollTop <= _this.changeNodeTop * 1.25
+        _this.scrollTop >= _this.changeNodeTop_01 &&
+        _this.scrollTop <= _this.changeNodeTop_01 * 1.25
       ) {
-        _this.active = true;
+        _this.active_01 = true;
       } else {
-        _this.active = false;
+        _this.active_01 = false;
       }
+
+
+
+
+
+
+      
     };
   },
   destroyed() {
@@ -238,34 +283,26 @@ export default {
 
   .change_item {
     width: 78rem;
-    height: 400px;
+    height: 28rem;
     margin: 10rem auto 0;
     color: cornsilk;
     position: relative;
 
-    .item_title {
-      font-size: 3rem;
-    }
-    .detail {
-      margin-top: 2rem;
-      margin-left: 3rem;
-    }
     img {
-      position: absolute;
       height: 24rem;
-      top: 0;
       transition: 1s;
+      position: absolute;
+      top: 0;
+      left: 0;
       border-radius: 0.2rem;
+
       &:nth-of-type(1) {
-        right: 10rem;
         opacity: 1;
         &.active {
-          // display: none;
           visibility: hidden;
         }
       }
       &:nth-of-type(2) {
-        right: 10rem;
         opacity: 0;
         &.active {
           opacity: 1;
@@ -274,6 +311,77 @@ export default {
         }
       }
     }
+
+    /*  */
+    .left {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+    }
+    .right {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+    }
+    /*  */
+    .item_title {
+      font-size: 3rem;
+    }
+    .detail {
+      margin-top: 2rem;
+      margin-left: 6rem;
+    }
+    /*  */
+    .img_right {
+      position: absolute;
+      width: 38rem;
+      height: 24rem;
+      right: 10rem;
+    }
+    .img_left {
+      position: absolute;
+      width: 38rem;
+      height: 24rem;
+      left: 10rem;
+      overflow: hidden;
+
+      .garbage {
+        height: 5rem;
+        position: absolute;
+        z-index: 9999;
+
+        &:nth-of-type(1) {
+          top: 16rem;
+          left: 3rem;
+          &.active {
+            left: -20rem;
+          }
+        }
+        &:nth-of-type(2) {
+          opacity: 1;
+          top: 18rem;
+          left: 11rem;
+          &.active {
+            left: -20rem;
+          }
+        }
+        &:nth-of-type(3) {
+          top: 16rem;
+          left: 21rem;
+          &.active {
+            left: 40rem;
+          }
+        }
+        &:nth-of-type(4) {
+          top: 18rem;
+          left: 28rem;
+          &.active {
+            left: 40rem;
+          }
+        }
+      }
+    }
+    /*  */
   }
 }
 @keyframes zoom {
