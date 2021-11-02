@@ -2,13 +2,13 @@
   <div class="header_node">
     <div class="title_box">
       <h2 class="head_title" :class="{ reset: isActive }">保护</h2>
-      <img src="../../assets/images/02_login_icon.png" alt="" srcset="" />
+      <img src="../../assets/images/login/02_login_icon.png" alt="" srcset="" />
       <h2 class="head_title" :class="{ reset: isActive }">环境</h2>
     </div>
     <div class="userName">
       <h2>{{ userName }}</h2>
       <img
-        src="../../assets/images/exit.png"
+        src="../../assets/images/public/exit.png"
         alt=""
         srcset=""
         @click="exitLogin"

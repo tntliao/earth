@@ -9,7 +9,7 @@
       >
         <img
           class="imgNode"
-          src="../assets/images/02_login_icon.png"
+          src="../assets/images/login/02_login_icon.png"
           :class="{ img_active: isActive }"
           @click="goLogin"
         />
@@ -145,7 +145,7 @@ export default {
   overflow: hidden;
   box-sizing: border-box;
   background-size: cover;
-  background-image: url("../assets/images/03_login_bg.png");
+  background-image: url("../assets/images/login/03_login_bg.png");
 
   .login_container {
     display: flex;

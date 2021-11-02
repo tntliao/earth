@@ -8,22 +8,22 @@
       <div class="item" @click="goDetail(0)">
         <h3 class="item_title">海洋</h3>
         <p class="deatil">约占地球表面积的71%</p>
-        <img src="../../assets/images/01_banner.png" alt="" />
+        <img src="../../assets/images/banner/01_banner.png" alt="" />
       </div>
       <div class="item" @click="goDetail(1)">
         <h3 class="item_title">冰川</h3>
         <p class="deatil">两年融化一座珠穆朗玛峰的量</p>
-        <img src="../../assets/images/02_banner.png" alt="" />
+        <img src="../../assets/images/banner/02_banner.png" alt="" />
       </div>
       <div class="item" @click="goDetail(2)">
         <h3 class="item_title">沙漠</h3>
         <p class="deatil">破坏土地平衡变成沙子</p>
-        <img src="../../assets/images/03_banner.png" alt="" />
+        <img src="../../assets/images/banner/03_banner.png" alt="" />
       </div>
       <div class="item" @click="goDetail(3)">
         <h3 class="item_title">雨林</h3>
         <p class="deatil">每年减少约1700公顷</p>
-        <img src="../../assets/images/04_banner.png" alt="" />
+        <img src="../../assets/images/banner/04_banner.png" alt="" />
       </div>
     </div>
     <div class="slogan">
@@ -41,11 +41,11 @@
         <div class="img_right">
           <img
             :class="{ active: active_01 }"
-            src="../../assets/images/01_contrast_2.jpg"
+            src="../../assets/images/contrast/01_contrast_2.jpg"
           />
           <img
             :class="{ active: active_01 }"
-            src="../../assets/images/01_contrast_1.jpg"
+            src="../../assets/images/contrast/01_contrast_1.jpg"
           />
         </div>
       </div>
@@ -59,25 +59,29 @@
         <div class="img_left">
           <img
             class="garbage"
-            src="../../assets/images/01_garbage.png"
+            :class="{ active: active_02 }"
+            src="../../assets/images/contrast/garbage/01_garbage.png"
             alt=""
           />
           <img
             class="garbage"
-            src="../../assets/images/02_garbage.png"
+            :class="{ active: active_02 }"
+            src="../../assets/images/contrast/garbage/02_garbage.png"
             alt=""
           />
           <img
             class="garbage"
-            src="../../assets/images/03_garbage.png"
+            :class="{ active: active_02 }"
+            src="../../assets/images/contrast/garbage/03_garbage.png"
             alt=""
           />
           <img
             class="garbage"
-            src="../../assets/images/04_garbage.png"
+            :class="{ active: active_02 }"
+            src="../../assets/images/contrast/garbage/04_garbage.png"
             alt=""
           />
-          <img src="../../assets/images/02_contrast_1.jpg" />
+          <img src="../../assets/images/contrast/02_contrast_1.jpg" />
         </div>
       </div>
     </div>
@@ -99,11 +103,10 @@ export default {
   methods: {
     goDetail: function (val) {
       const itemNode = document.getElementsByClassName("item")[val];
-      const width = itemNode.offsetWidth + 13536361414;
-      const height = itemNode.offsetHeight + 13536361414;
-      const left = itemNode.offsetLeft + 13536361414;
-      const top =
-        itemNode.offsetTop - document.documentElement.scrollTop + 13536361414;
+      const width = itemNode.offsetWidth;
+      const height = itemNode.offsetHeight;
+      const left = itemNode.offsetLeft;
+      const top = itemNode.offsetTop - document.documentElement.scrollTop;
       this.$router.push({
         path: "/home/detail",
         query: { val, left, top, width, height },
@@ -117,12 +120,12 @@ export default {
       this.changeNodeTop_01 =
         changeNode[0].offsetTop - changeNode[0].offsetTop * 0.125;
       this.changeNodeTop_02 =
-        changeNode[1].offsetTop - changeNode[1].offsetTop * 0.125;
+        changeNode[1].offsetTop - changeNode[1].offsetTop * 0.09;
     }, 1000);
 
     window.onscroll = function () {
       _this.scrollTop = document.documentElement.scrollTop;
-      
+
       if (
         _this.scrollTop >= _this.changeNodeTop_01 &&
         _this.scrollTop <= _this.changeNodeTop_01 * 1.25
@@ -132,12 +135,14 @@ export default {
         _this.active_01 = false;
       }
 
-
-
-
-
-
-      
+      if (
+        _this.scrollTop >= _this.changeNodeTop_02 &&
+        _this.scrollTop <= _this.changeNodeTop_02 * 1.25
+      ) {
+        _this.active_02 = true;
+      } else {
+        _this.active_02 = false;
+      }
     };
   },
   destroyed() {
@@ -254,7 +259,7 @@ export default {
   height: 20rem;
   float: left;
   margin-top: 1rem;
-  background-image: url("../../assets/images/04_banner.jpg");
+  background-image: url("../../assets/images/banner/04_banner.jpg");
   background-size: cover;
   position: relative;
 
