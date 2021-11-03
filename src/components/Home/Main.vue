@@ -289,7 +289,6 @@ export default {
   float: left;
   width: 100%;
   padding-top: 1rem;
-  height: 2000px;
   background-color: rgb(0, 0, 0);
 
   .change_item {
@@ -298,6 +297,10 @@ export default {
     margin: 10rem auto 0;
     color: cornsilk;
     position: relative;
+
+    &:nth-of-type(2) {
+      margin-bottom: 10rem;
+    }
 
     img {
       height: 24rem;

@@ -43,9 +43,10 @@ export default {
   .logo {
     position: absolute;
     width: 5rem;
+    // transform: translateY(-50%);
     transition: 0.5s;
     top: 50%;
-    transform: translateY(-50%);
+    animation: earth 5s linear infinite;
   }
   .footer_left {
     position: absolute;
@@ -83,5 +84,14 @@ export default {
 .footer_p {
   text-align: center;
   font-size: 1rem;
+}
+
+@keyframes earth {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
 }
 </style>

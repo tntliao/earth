@@ -1,8 +1,9 @@
 import VueRouter from "vue-router";
 import Login from '../components/Login.vue';
 import Home from '../components/Home';
-import Detail from '../components/Detail.vue'
-export default new VueRouter({
+import Detail from '../components/Detail.vue';
+
+const router = new VueRouter({
     mode: 'hash',
     base: process.env.BASE_URL,
     routes: [
@@ -28,3 +29,17 @@ export default new VueRouter({
         }
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.path === '/home/detail') {
+        document.querySelector("html").style.background = "#ecf5f9";
+        next();
+    } else if (to.path === '/home') {
+        document.querySelector("html").style.background = "transparent";
+        next();
+    } else {
+        next()
+    }
+})
+
+export default router;

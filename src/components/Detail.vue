@@ -47,7 +47,6 @@ export default {
   mixins: [mixins],
   methods: {
     goBack: function () {
-      document.querySelector("html").style.background = "transparent";
       this.$router.back();
     },
     getDetail: function () {
@@ -68,9 +67,6 @@ export default {
         }
       }, 500);
     },
-  },
-  beforeMount() {
-    document.querySelector("html").style.background = "#ecf5f9";
   },
   mounted() {
     setTimeout(() => {
