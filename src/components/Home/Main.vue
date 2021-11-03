@@ -193,7 +193,7 @@ export default {
       position: relative;
       cursor: pointer;
       border-radius: 0.2rem;
-      animation: move 0.5s;
+      animation: move 0.7s;
 
       .item_title {
         position: absolute;

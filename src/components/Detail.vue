@@ -174,7 +174,7 @@ export default {
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 6;
+            -webkit-line-clamp: 5;
           }
           .link {
             position: absolute;
@@ -208,13 +208,32 @@ export default {
 }
 
 @media screen and (max-width: 700px) {
-  .left {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  .right_bottom,
-  .right_top {
-    width: 100% !important;
+  .detail_container {
+    .left {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    .right {
+      width: 100%;
+      .news {
+        font-size: 4rem;
+      }
+      .news_list {
+        .item {
+          height: 25rem;
+          .news_left {
+            width: 40rem;
+            height: 100%;
+          }
+          .news_right {
+            width: 55rem;
+            a {
+              bottom: 10px !important;
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>

@@ -43,7 +43,7 @@ export default {
   .logo {
     position: absolute;
     width: 5rem;
-    // transform: translateY(-50%);
+    min-width: 35px;
     transition: 0.5s;
     top: 50%;
     animation: earth 5s linear infinite;
