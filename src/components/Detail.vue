@@ -17,194 +17,56 @@
             <p>
               {{ item.detail }}
             </p>
+            <a class="link" :href="item.link" target="_blank">原文链接</a>
           </div>
         </div>
-        <div class="more" @click="getDetail">获取更多</div>
+        <p class="more" @click="getDetail" v-if="!isLoading">获取更多</p>
+        <i class="el-icon-loading loading" v-else></i>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  banner1,
-  banner2,
-  banner3,
-  banner4,
-  detail1,
-  detail2,
-  detail3,
-  detail4,
-  detail5,
-  detail6,
-  detail7,
-  detail8,
-} from "../util/images";
+import mixins from "../mixin";
 export default {
   name: "Detail",
   data() {
     return {
       isActive: false,
       val: this.$route.query.val,
+      isLoading: false,
       styObj: {
         width: this.$route.query.width + "px",
         height: this.$route.query.height + "px",
         left: this.$route.query.left + "px",
         top: this.$route.query.top + "px",
       },
-      detailInfo: [
-        {
-          imgurl: banner1,
-          title: "海洋",
-          detail: `海洋的健康与生物多样性与人类的生存与福祉息息相关。
-          人类致力于通过预防和终止破坏性的行为来维护和修复海洋生态系
-          统，同时倡导海洋保护区的创建，以保护濒危的海洋哺乳动物和其
-          他物种。`,
-        },
-        {
-          imgurl: banner2,
-          title: "冰川",
-          detail: `冰川是气候变化的一个敏感指标，而且很容易被观察到
-          。无论海拔高度或纬度如何，冰川都在以极快速度消退。然而，到
-          目前为止，人们只部分了解阿拉斯加、冰岛和阿尔卑斯山的冰川融
-          化速度最快。帕米尔山脉、兴都库什山脉和喜马拉雅山脉的高山冰
-          川受到的影响也非常显著。`,
-        },
-        {
-          imgurl: banner3,
-          title: "沙漠",
-          detail: `土地沙漠化包括气候变异和人类活动在内的种种因素造
-          成的干旱、半干旱和亚湿润干旱地区的土地退化,由于人为过度的
-          经济活动,破坏其平衡,使原非沙漠的地区出现了类似沙漠景观的环
-          境变化过程，土地沙漠化和土地荒漠化差别不大,但荒漠化严重程度
-          要高`,
-        },
-        {
-          imgurl: banner4,
-          title: "雨林",
-          detail: `在21世纪，和许多其他的自然场所一样，热带雨林是一种
-          稀缺的资源。就在几千年以前，热带雨林覆盖了地球陆地表面的
-          多达12%的面积，大约155万平方公里，但是现在只有不到5%的地球陆
-          地被这些热带森林覆盖。在南美的亚马逊河流域发现了最大的未被破坏
-          的热带雨林带。`,
-        },
-      ],
-      detailData: [
-        [
-          {
-            id: "001",
-            imgurl: detail1,
-            detail: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non
-              maiores sunt nisi pariatur vel, rerum enim unde dolorum harum
-              laboriosam, consequuntur suscipit quod, tempore officia veritatis
-              nostrum quisquam. Omnis obcaecati minus necessitatibus harum sequi
-              atque tempore quis vero error vitae praesentium, maxime labore
-              nobis reiciendis maiores totam soluta eaque?`,
-          },
-          {
-            id: "002",
-            imgurl: detail2,
-            detail: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non
-              maiores sunt nisi pariatur vel, rerum enim unde dolorum harum
-              laboriosam, consequuntur suscipit quod, tempore officia veritatis
-              nostrum quisquam. Omnis obcaecati minus necessitatibus harum sequi
-              atque tempore quis vero error vitae praesentium, maxime labore
-              nobis reiciendis maiores totam soluta eaque?`,
-          },
-        ],
-        [
-          {
-            id: "003",
-            imgurl: detail3,
-            detail: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non
-              maiores sunt nisi pariatur vel, rerum enim unde dolorum harum
-              laboriosam, consequuntur suscipit quod, tempore officia veritatis
-              nostrum quisquam. Omnis obcaecati minus necessitatibus harum sequi
-              atque tempore quis vero error vitae praesentium, maxime labore
-              nobis reiciendis maiores totam soluta eaque?`,
-          },
-          {
-            id: "004",
-            imgurl: detail4,
-            detail: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non
-              maiores sunt nisi pariatur vel, rerum enim unde dolorum harum
-              laboriosam, consequuntur suscipit quod, tempore officia veritatis
-              nostrum quisquam. Omnis obcaecati minus necessitatibus harum sequi
-              atque tempore quis vero error vitae praesentium, maxime labore
-              nobis reiciendis maiores totam soluta eaque?`,
-          },
-        ],
-        [
-          {
-            id: "005",
-            imgurl: detail5,
-            detail: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non
-              maiores sunt nisi pariatur vel, rerum enim unde dolorum harum
-              laboriosam, consequuntur suscipit quod, tempore officia veritatis
-              nostrum quisquam. Omnis obcaecati minus necessitatibus harum sequi
-              atque tempore quis vero error vitae praesentium, maxime labore
-              nobis reiciendis maiores totam soluta eaque?`,
-          },
-          {
-            id: "006",
-            imgurl: detail6,
-            detail: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non
-              maiores sunt nisi pariatur vel, rerum enim unde dolorum harum
-              laboriosam, consequuntur suscipit quod, tempore officia veritatis
-              nostrum quisquam. Omnis obcaecati minus necessitatibus harum sequi
-              atque tempore quis vero error vitae praesentium, maxime labore
-              nobis reiciendis maiores totam soluta eaque?`,
-          },
-        ],
-        [
-          {
-            id: "007",
-            imgurl: detail7,
-            detail: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non
-              maiores sunt nisi pariatur vel, rerum enim unde dolorum harum
-              laboriosam, consequuntur suscipit quod, tempore officia veritatis
-              nostrum quisquam. Omnis obcaecati minus necessitatibus harum sequi
-              atque tempore quis vero error vitae praesentium, maxime labore
-              nobis reiciendis maiores totam soluta eaque?`,
-          },
-          {
-            id: "008",
-            imgurl: detail8,
-            detail: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non
-              maiores sunt nisi pariatur vel, rerum enim unde dolorum harum
-              laboriosam, consequuntur suscipit quod, tempore officia veritatis
-              nostrum quisquam. Omnis obcaecati minus necessitatibus harum sequi
-              atque tempore quis vero error vitae praesentium, maxime labore
-              nobis reiciendis maiores totam soluta eaque?`,
-          },
-        ],
-      ],
-      backupData: [
-        [
-          {
-            id: "009",
-            imgurl: detail3,
-            detail: "asdasdasdasdasdasdsaaaaaaaaadqwdqwdqwdqwdqwdqwd",
-          },
-          {
-            id: "010",
-            imgurl: detail4,
-            detail: "dqwdqwdwqdsacasggsdgsdfewrqwrevcvsdadsADSFDSAGA",
-          },
-        ],
-      ],
     };
   },
+  mixins: [mixins],
   methods: {
     goBack: function () {
       document.querySelector("html").style.background = "transparent";
       this.$router.back();
     },
     getDetail: function () {
+      this.isLoading = true;
       const nowData = this.detailData[this.val];
       const moreData = this.backupData[this.val] || [];
-      const newData = [...nowData, ...moreData];
-      this.detailData.splice(this.val, 1, newData);
+      setTimeout(() => {
+        this.isLoading = false;
+        if (moreData.length > 0) {
+          const newData = [...nowData, ...moreData];
+          this.detailData.splice(this.val, 1, newData);
+        } else {
+          this.$message({
+            message: "当前数据已是最新",
+            type: "success",
+            center: true,
+          });
+        }
+      }, 500);
     },
   },
   beforeMount() {
@@ -220,9 +82,6 @@ export default {
     setTimeout(() => {
       this.isActive = true;
     }, 300);
-  },
-  unmounted() {
-    console.log("a");
   },
 };
 </script>
@@ -297,6 +156,7 @@ export default {
         transition: 0.5s;
         height: 14rem;
         margin-bottom: 1rem;
+        position: relative;
 
         .news_left {
           width: 23rem;
@@ -313,20 +173,39 @@ export default {
           width: 45rem;
           height: 14rem;
           overflow: hidden;
+          p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 6;
+          }
+          .link {
+            position: absolute;
+            font-size: 1rem;
+            bottom: 0;
+            &:hover {
+              transition: 0.5s;
+              color: #ffa300;
+            }
+          }
         }
       }
       .more {
         position: absolute;
-        width: 9rem;
-        height: 2.8rem;
-        text-align: center;
         line-height: 3rem;
-        border-radius: 0.2rem;
         left: 50%;
         transform: translateX(-50%);
         cursor: pointer;
         font-size: 1rem;
-        background: rgb(255, 255, 255);
+      }
+      .loading {
+        position: absolute;
+        line-height: 3rem;
+        left: 49%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        font-size: 1.2rem;
       }
     }
   }

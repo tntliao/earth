@@ -1,7 +1,13 @@
 <template>
   <div class="main_container">
     <div class="banner">
-      <video src="../../assets/video/01_banner.mp4" muted autoplay loop></video>
+      <video
+        src="../../assets/video/01_banner.mp4"
+        muted
+        autoplay
+        loop
+        poster="../../assets/video/cover.png"
+      ></video>
     </div>
     <div class="earth_container">
       <h2 class="earth_title">地球 Earth</h2>
