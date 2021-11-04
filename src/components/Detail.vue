@@ -73,18 +73,24 @@ export default {
     getDetail: function () {
       this.isLoading = true;
       const nowData = this.detailData[this.val];
-      let moreData = this.backupData[this.val] || [];
-      moreData = moreData.map((item) => {
-        const newItem = {
-          id: nanoid(),
-          imgurl: item.imgurl,
-          title: item.title,
-        };
-        return newItem;
-      });
+      var moreData;
+      if (this.val === "0") {
+        moreData = this.backupData;
+      } else {
+        moreData = [];
+      }
       setTimeout(() => {
         this.isLoading = false;
         if (moreData.length > 0) {
+          moreData = moreData.map((item) => {
+            const newItem = {
+              id: nanoid(),
+              imgurl: item.imgurl,
+              title: item.title,
+            };
+            return newItem;
+          });
+
           const newData = [...nowData, ...moreData];
           this.detailData.splice(this.val, 1, newData);
         } else {

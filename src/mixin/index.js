@@ -100,7 +100,6 @@ const backupData = [
         imgurl: detail10,
         title: `世界海洋日丨保护海洋就是保护自己 让我们一起守护每一片蔚蓝`,
     },
-
 ]
 
 const wholeData = detailData.map((item, index) => {
