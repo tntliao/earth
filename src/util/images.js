@@ -11,5 +11,6 @@ import detail6 from "../assets/images/detail/06_detail.png";
 import detail7 from "../assets/images/detail/07_detail.png";
 import detail8 from "../assets/images/detail/08_detail.png";
 import detail9 from "../assets/images/detail/09_detail.png";
+import detail10 from "../assets/images/detail/10_detail.png";
 
-export { banner1, banner2, banner3, banner4, detail1, detail2, detail3, detail4, detail5, detail6, detail7, detail8, detail9 }
+export { banner1, banner2, banner3, banner4, detail1, detail2, detail3, detail4, detail5, detail6, detail7, detail8, detail9, detail10 }

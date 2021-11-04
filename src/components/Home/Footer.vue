@@ -85,6 +85,7 @@ export default {
   text-align: center;
   font-size: 1rem;
   padding: 0.5rem 0;
+  background: white;
 }
 
 @keyframes earth {

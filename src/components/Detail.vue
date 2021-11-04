@@ -8,7 +8,12 @@
     </div>
     <div class="right" :class="{ active: isActive }">
       <h2 class="right_title">新闻</h2>
-      <div class="item" v-for="item in detailData[val]" :key="item.id">
+      <div
+        class="item"
+        v-for="(item, index) in detailData[val]"
+        :key="item.id"
+        @click="goNews(index, detailInfo[val].title)"
+      >
         <div class="item_left">
           <img :src="item.imgurl" />
         </div>
@@ -23,6 +28,7 @@
 </template>
 
 <script>
+import { nanoid } from "nanoid";
 import mixins from "../mixin";
 export default {
   name: "Detail",
@@ -44,10 +50,38 @@ export default {
     goBack: function () {
       this.$router.back();
     },
+    goNews: function (index, detailVal) {
+      switch (detailVal) {
+        case (detailVal = "海洋"):
+          detailVal = 0;
+          break;
+        case (detailVal = "冰川"):
+          detailVal = 1;
+          break;
+        case (detailVal = "沙漠"):
+          detailVal = 2;
+          break;
+        case (detailVal = "雨林"):
+          detailVal = 3;
+          break;
+      }
+      this.$router.push({
+        path: "/home/detail/news",
+        query: { index, detailVal },
+      });
+    },
     getDetail: function () {
       this.isLoading = true;
       const nowData = this.detailData[this.val];
-      const moreData = this.backupData[this.val] || [];
+      let moreData = this.backupData[this.val] || [];
+      moreData = moreData.map((item) => {
+        const newItem = {
+          id: nanoid(),
+          imgurl: item.imgurl,
+          title: item.title,
+        };
+        return newItem;
+      });
       setTimeout(() => {
         this.isLoading = false;
         if (moreData.length > 0) {
@@ -103,9 +137,8 @@ export default {
       &:nth-of-type(2) {
         margin: 5rem 2rem 0;
         width: 21rem;
-        height: 13rem;
+        height: 15rem;
         background-size: cover;
-        border-radius: 0.2rem;
         transition: 0.5s;
       }
     }
@@ -152,7 +185,6 @@ export default {
       background: #f4f4f4;
       margin-bottom: 1rem;
       cursor: pointer;
-      transition: 0.5s;
 
       .item_left {
         position: absolute;
@@ -162,6 +194,7 @@ export default {
         overflow: hidden;
         img {
           height: 100%;
+          transition: 0.5s;
         }
       }
       .item_right {
@@ -171,6 +204,7 @@ export default {
         height: 15rem;
         padding: 3rem;
         box-sizing: border-box;
+        transition: 0.5s;
 
         h2 {
           font-size: 1.5rem;
@@ -178,7 +212,14 @@ export default {
       }
 
       &:hover {
-        transform: translateX(-10px);
+        .item_left {
+          img {
+            transform: scale(1.1);
+          }
+        }
+        .item_right {
+          color: #ffa300;
+        }
       }
     }
     .more {
