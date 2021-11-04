@@ -1,13 +1,8 @@
 <template>
   <div class="main_container">
     <div class="banner">
-      <video
-        src="../../assets/video/01_banner.mp4"
-        muted
-        autoplay
-        loop
-        poster="../../assets/video/cover.png"
-      ></video>
+      <!-- poster="../../assets/video/cover.png" -->
+      <video src="../../assets/video/01_banner.mp4" muted autoplay loop></video>
     </div>
     <div class="earth_container">
       <h2 class="earth_title">地球 Earth</h2>
@@ -228,7 +223,7 @@ export default {
       }
       img {
         height: 100%;
-        transform: scale(1.2);
+        transform: scale(1);
         transition: 0.7s;
       }
     }
@@ -244,7 +239,7 @@ export default {
 }
 @media screen and (min-width: 821px) {
   .earth_container .item:hover img {
-    transform: scale(1);
+    transform: scale(1.2);
   }
   .earth_container .item:hover .deatil {
     color: #ffa300;
@@ -273,7 +268,7 @@ export default {
     position: absolute;
     font-size: 2.5rem;
     transition: 0.5s;
-    color: cornsilk;
+    color: white;
     &:nth-of-type(1) {
       top: 6rem;
       left: 38rem;
@@ -295,7 +290,7 @@ export default {
     width: 78rem;
     height: 28rem;
     margin: 10rem auto 0;
-    color: cornsilk;
+    color: white;
     position: relative;
 
     &:nth-of-type(2) {

@@ -233,6 +233,9 @@ export default {
     &.hidden {
       opacity: 0;
     }
+    a {
+      color: #ffa300;
+    }
   }
 }
 

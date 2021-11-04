@@ -7,22 +7,17 @@
       <p class="left_detail">{{ detailInfo[val].detail }}</p>
     </div>
     <div class="right" :class="{ active: isActive }">
-      <h2 class="news">新闻</h2>
-      <div class="news_list">
-        <div class="item" v-for="item in detailData[val]" :key="item.id">
-          <div class="news_left">
-            <img :src="item.imgurl" alt="" />
-          </div>
-          <div class="news_right">
-            <p>
-              {{ item.detail }}
-            </p>
-            <a class="link" :href="item.link" target="_blank">原文链接</a>
-          </div>
+      <h2 class="right_title">新闻</h2>
+      <div class="item" v-for="item in detailData[val]" :key="item.id">
+        <div class="item_left">
+          <img :src="item.imgurl" />
         </div>
-        <p class="more" @click="getDetail" v-if="!isLoading">获取更多</p>
-        <i class="el-icon-loading loading" v-else></i>
+        <div class="item_right">
+          <h2>{{ item.title }}</h2>
+        </div>
       </div>
+      <p class="more" @click="getDetail" v-if="!isLoading">获取更多</p>
+      <i class="el-icon-loading loading" v-else></i>
     </div>
   </div>
 </template>
@@ -71,13 +66,13 @@ export default {
   mounted() {
     setTimeout(() => {
       this.styObj.width = 25 + "%";
-      this.styObj.height = 100 + "vh";
+      this.styObj.height = 96 + "vh";
       this.styObj.left = 0;
       this.styObj.top = 0;
+      setTimeout(() => {
+        this.isActive = true;
+      }, 300);
     }, 10);
-    setTimeout(() => {
-      this.isActive = true;
-    }, 300);
   },
 };
 </script>
@@ -90,10 +85,12 @@ export default {
   .left {
     min-width: 150px;
     position: fixed;
-    background: #f9fcfd;
+    background: white;
     overflow: hidden;
     transition: 0.5s;
     border-radius: 0.4rem;
+    margin: 1rem;
+    box-sizing: border-box;
 
     img {
       &:nth-of-type(1) {
@@ -123,17 +120,20 @@ export default {
       font-size: 1rem;
     }
   }
-
   .right {
     position: absolute;
-    right: 0;
-    width: 74%;
-    min-height: 100vh;
-    padding: 2rem;
-    padding-bottom: 5.5rem;
-    box-sizing: border-box;
+    width: 73%;
+    height: 96vh;
+    background: white;
     border-radius: 0.4rem;
-    background: #f9fcfd;
+    margin: 1rem;
+    margin-right: 0;
+    padding: 2rem;
+    padding-top: 1rem;
+    right: 0;
+    transition: 0.5s;
+    overflow-y: scroll;
+    box-sizing: border-box;
     opacity: 0;
     transform: translateY(-200px);
     transition: 1.3s;
@@ -141,68 +141,62 @@ export default {
       opacity: 1;
       transform: translateY(0px);
     }
-    .news {
-      text-align: center;
+    .right_title {
       font-size: 2rem;
-      margin-bottom: 0.2rem;
+      text-align: center;
+      padding-bottom: 1rem;
     }
-    .news_list {
+    .item {
       position: relative;
-      .item {
-        transition: 0.5s;
-        height: 14rem;
-        margin-bottom: 1rem;
-        position: relative;
+      height: 15rem;
+      background: #f4f4f4;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: 0.5s;
 
-        .news_left {
-          width: 23rem;
-          height: 14rem;
-          float: left;
-          img {
-            width: 100%;
-            transition: 0.5s;
-            border-radius: 0.2rem;
-          }
-        }
-        .news_right {
-          float: right;
-          width: 45rem;
-          height: 14rem;
-          overflow: hidden;
-          p {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 5;
-          }
-          .link {
-            position: absolute;
-            font-size: 1rem;
-            bottom: 0;
-            &:hover {
-              transition: 0.5s;
-              color: #ffa300;
-            }
-          }
+      .item_left {
+        position: absolute;
+        left: 0;
+        width: 25rem;
+        height: 15rem;
+        overflow: hidden;
+        img {
+          height: 100%;
         }
       }
-      .more {
+      .item_right {
         position: absolute;
-        line-height: 3rem;
-        left: 50%;
-        transform: translateX(-50%);
-        cursor: pointer;
-        font-size: 1rem;
+        right: 0;
+        width: 42.9rem;
+        height: 15rem;
+        padding: 3rem;
+        box-sizing: border-box;
+
+        h2 {
+          font-size: 1.5rem;
+        }
       }
-      .loading {
-        position: absolute;
-        line-height: 3rem;
-        left: 49%;
-        transform: translateX(-50%);
-        cursor: pointer;
-        font-size: 1.2rem;
+
+      &:hover {
+        transform: translateX(-10px);
       }
+    }
+    .more {
+      position: absolute;
+      line-height: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .loading {
+      position: absolute;
+      line-height: 3rem;
+      left: 49%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      font-size: 1.2rem;
     }
   }
 }
@@ -212,27 +206,6 @@ export default {
     .left {
       opacity: 0;
       transform: translateX(-100%);
-    }
-    .right {
-      width: 100%;
-      .news {
-        font-size: 4rem;
-      }
-      .news_list {
-        .item {
-          height: 25rem;
-          .news_left {
-            width: 40rem;
-            height: 100%;
-          }
-          .news_right {
-            width: 55rem;
-            a {
-              bottom: 10px !important;
-            }
-          }
-        }
-      }
     }
   }
 }

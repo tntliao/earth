@@ -32,13 +32,11 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.path === '/home/detail') {
-        document.querySelector("html").style.background = "#ecf5f9";
+        document.querySelector("html").style.overflow = 'hidden';
         next();
-    } else if (to.path === '/home') {
-        document.querySelector("html").style.background = "transparent";
+    } else if (to.path !== '/home/detail') {
+        document.querySelector("html").style.overflow = "auto";
         next();
-    } else {
-        next()
     }
 })
 
