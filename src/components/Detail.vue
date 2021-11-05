@@ -19,6 +19,13 @@
         </div>
         <div class="item_right">
           <h2>{{ item.title }}</h2>
+          <div class="author">
+            <div class="author_left">
+              <img src="../assets/images/login/02_login_icon.png" alt="" />
+              <p class="name">保护地球环境</p>
+            </div>
+            <p class="time">2021-10-23</p>
+          </div>
         </div>
       </div>
       <p class="more" @click="getDetail" v-if="!isLoading">获取更多</p>
@@ -65,6 +72,15 @@ export default {
           detailVal = 3;
           break;
       }
+
+      if (index > 3) {
+        if (index % 2 === 1) {
+          index = 3;
+        } else if (index % 2 === 0) {
+          index = 2;
+        }
+      }
+
       this.$router.push({
         path: "/home/detail/news",
         query: { index, detailVal },
@@ -181,6 +197,7 @@ export default {
       transform: translateY(0px);
     }
     .right_title {
+      transition: 0.5s;
       font-size: 2rem;
       text-align: center;
       padding-bottom: 1rem;
@@ -208,12 +225,39 @@ export default {
         right: 0;
         width: 42.9rem;
         height: 15rem;
-        padding: 3rem;
+        padding: 3rem 3rem 2rem;
         box-sizing: border-box;
         transition: 0.5s;
 
         h2 {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
           font-size: 1.5rem;
+          transition: 0.5s;
+        }
+        .author {
+          position: absolute;
+          width: 38rem;
+          height: 4rem;
+          bottom: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .author_left {
+            width: 20rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            img {
+              width: 2.5rem;
+              height: 2.5rem;
+              margin-right: 1rem;
+              border-radius: 50%;
+            }
+          }
         }
       }
 
@@ -223,7 +267,7 @@ export default {
             transform: scale(1.1);
           }
         }
-        .item_right {
+        .item_right h2 {
           color: #ffa300;
         }
       }
@@ -253,6 +297,23 @@ export default {
     .left {
       opacity: 0;
       transform: translateX(-100%);
+    }
+    .right {
+      width: 100%;
+      .right_title {
+        font-size: 5rem;
+      }
+      .item {
+        height: 25rem;
+        .item_left {
+          width: 41rem;
+          height: 25rem;
+        }
+        .item_right {
+          width: 52.9rem;
+          height: 25rem;
+        }
+      }
     }
   }
 }

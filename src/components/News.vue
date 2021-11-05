@@ -3,52 +3,37 @@
     <div class="news_container">
       <div class="news_content">
         <div class="news_img">
-          <img src="../assets/images/detail/10_detail.png" alt="" srcset="" />
+          <img :src="wholeData[detailVal][index].imgurl" alt="" srcset="" />
         </div>
         <div class="news_title">
-          <h2>保护海洋 你我同行｜多部门携手“净滩”共护蔚蓝大海</h2>
+          <h2>{{ wholeData[detailVal][index].title }}</h2>
         </div>
         <div class="author">
-          <img
-            src="../assets/images/login/02_login_icon.png"
-            alt=""
-            srcset=""
-          />
-          <p class="name">tntliao</p>
+          <div class="left">
+            <img
+              src="../assets/images/login/02_login_icon.png"
+              alt=""
+              srcset=""
+            />
+            <p class="name">保护地球环境</p>
+          </div>
+          <p class="timer">{{ wholeData[detailVal][index].time }}</p>
         </div>
       </div>
     </div>
     <div class="news_article">
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem nobis
-        aliquam molestias hic atque, non, similique facere iusto temporibus vero
-        officia? Tenetur, veniam earum molestias quasi dicta alias optio in.
+      <p>{{ wholeData[detailVal][index].article.top }}</p>
+      <img :src="wholeData[detailVal][index].pictures.top" alt="" />
+      <p>{{ wholeData[detailVal][index].article.center }}</p>
+      <img :src="wholeData[detailVal][index].pictures.center" alt="" />
+      <p v-if="wholeData[detailVal][index].article.bottom">
+        {{ wholeData[detailVal][index].article.bottom }}
       </p>
-      <img
-        src="https://cdn.sspai.com/editor/u_/c5uh2j5b34td0qukc9b0.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1"
-        alt=""
-      />
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio
-        reiciendis at perferendis ratione. Voluptate doloribus, eius eum
-        inventore, quod eligendi dignissimos aperiam eos obcaecati repellat
-        unde, iste a harum nihil ut non ab quas porro? Nobis numquam eum placeat
-        et, unde nihil? Dicta saepe debitis at accusamus eos assumenda vero ad.
-        Quae odit, consequatur suscipit aliquam omnis eveniet cupiditate sit.
-      </p>
-      <img
-        src="https://cdn.sspai.com/editor/u_/c5uh2jdb34tdf6lli3fg.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1"
-        alt=""
-      />
+      <img :src="wholeData[detailVal][index].pictures.bottom" alt="" />
     </div>
     <div class="footer">
       <div class="footer_left">
-        <h2>地球，我们唯一的家。保护它就是保护我们自己</h2>
-        <h2>Earth, our only home. To protect it is to protect ourselves</h2>
-        <h2>земля, наш единственный дом. защищать это значит защитить себя</h2>
-        <h2>
-          地球、私達の唯一の家。それを守ることは私たち自身を守ることです。
-        </h2>
+        <h2>要做保护环境的有为之人，不做污染环境的负罪之辈</h2>
       </div>
       <div class="footer_right">
         <a href="javascript:;">加入我们</a>
@@ -57,8 +42,8 @@
         <a href="javascript:;">提交意见</a>
       </div>
     </div>
-    <el-backtop :bottom="200">
-      <di class="up">UP</di>
+    <el-backtop :bottom="120" class="hidden">
+      <div class="up">UP</div>
     </el-backtop>
   </div>
 </template>
@@ -87,8 +72,13 @@ export default {
   background-color: #dddddd;
   text-align: center;
   line-height: 40px;
-  padding: 1rem;
+  padding: 0.7rem 1rem;
   color: #ffffff;
+  border-radius: 0.2rem;
+  transition: 0.5s;
+  &:hover {
+    color: #ffa300;
+  }
 }
 .news_container {
   background: white;
@@ -97,7 +87,7 @@ export default {
 
   .news_content {
     margin: 0 auto;
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-bottom: 1rem;
     width: 43rem;
     transition: 0.5s;
@@ -124,19 +114,24 @@ export default {
       margin-bottom: 0.2rem;
     }
     .author {
-      display: flex;
-      width: 6rem;
-      min-width: 50px;
       height: 3.5rem;
-      align-items: center;
-      justify-content: space-between;
-      img {
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
+      .left {
+        float: left;
+        display: flex;
+        align-items: center;
+        img {
+          width: 2.5rem;
+          height: 2.5rem;
+          margin-right: 1rem;
+          border-radius: 50%;
+        }
+        p {
+          font-size: 1rem;
+        }
       }
-      p {
-        font-size: 1rem;
+      .timer {
+        float: right;
+        line-height: 3.5rem;
       }
     }
   }
@@ -148,8 +143,9 @@ export default {
   padding: 2rem 9rem;
   overflow: hidden;
   animation: zoom 0.8s;
-
+  transition: 0.5s;
   p {
+    text-indent: 2em;
     font-size: 1rem;
     margin-bottom: 1rem;
   }
@@ -161,7 +157,7 @@ export default {
 .footer {
   position: relative;
   width: 100%;
-  height: 12rem;
+  height: 6rem;
   padding: 1rem;
   background: #232222;
   box-sizing: border-box;
@@ -171,7 +167,7 @@ export default {
     position: absolute;
     left: 15rem;
     width: 40rem;
-    height: 10rem;
+    height: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -190,7 +186,7 @@ export default {
     align-items: center;
     right: 5rem;
     width: 40rem;
-    height: 10rem;
+    height: 4rem;
     font-size: 1rem;
     a {
       color: white;
@@ -208,6 +204,47 @@ export default {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@media screen and (max-width: 700px) {
+  .news_container {
+    .news_content {
+      width: 80rem;
+      .news_img {
+        height: 35rem;
+        width: 100%;
+      }
+      .news_title {
+        width: 100%;
+        font-size: 3rem;
+      }
+      .author {
+        .left {
+          img {
+            width: 4.5rem;
+            height: 4.5rem;
+          }
+        }
+      }
+    }
+  }
+  .news_article {
+    width: 82rem;
+  }
+  .footer {
+    height: 10rem;
+    padding: 3rem;
+    .footer_left {
+      left: 50%;
+      width: 60rem;
+      transform: translateX(-50%);
+    }
+    .footer_right {
+      display: none;
+    }
+  }
+  .hidden {
+    display: none;
   }
 }
 </style>
