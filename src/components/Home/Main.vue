@@ -85,6 +85,18 @@
           <img src="../../assets/images/contrast/02_contrast_1.jpg" />
         </div>
       </div>
+      <div class="change_item">
+        <div class="left">
+          <h2 class="item_title">保护环境</h2>
+          <p class="detail">和谐发展</p>
+          <p class="detail">保护我们的下一代</p>
+          <p class="detail">共爱地球一个家</p>
+        </div>
+        <div class="shelter"></div>
+        <div class="img_right">
+          <img src="../../assets/images/contrast/03_contrast_1.png" alt="" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -98,7 +110,9 @@ export default {
       active_02: false,
       changeNodeTop_01: "",
       changeNodeTop_02: "",
+      changeNodeTop_03: "",
       scrollTop: "",
+      maxVal: "",
     };
   },
   methods: {
@@ -122,6 +136,9 @@ export default {
         changeNode[0].offsetTop - changeNode[0].offsetTop * 0.125;
       this.changeNodeTop_02 =
         changeNode[1].offsetTop - changeNode[1].offsetTop * 0.09;
+      this.changeNodeTop_03 =
+        changeNode[1].offsetTop - changeNode[1].offsetTop * 0.07;
+      _this.maxVal = _this.scrollTop - _this.changeNodeTop_03 * 1.1;
     }, 1000);
 
     window.onscroll = function () {
@@ -143,6 +160,15 @@ export default {
         _this.active_02 = true;
       } else {
         _this.active_02 = false;
+      }
+
+      if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.2
+      ) {
+        let nowVal = _this.scrollTop - _this.changeNodeTop_03 * 1.1;
+        let proportion = nowVal / _this.maxVal;
+        console.log(proportion);
       }
     };
   },
@@ -296,7 +322,29 @@ export default {
     &:nth-of-type(2) {
       margin-bottom: 10rem;
     }
-
+    &:nth-of-type(3) {
+      height: 34rem;
+      padding-bottom: 3rem;
+      .img_right {
+        top: -4rem;
+        width: 31rem;
+        height: 31rem;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .shelter {
+        position: absolute;
+        width: 50rem;
+        height: 26rem;
+        right: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.7);
+        bottom: 0;
+        transition: 0.5s;
+      }
+    }
     img {
       height: 24rem;
       transition: 1s;

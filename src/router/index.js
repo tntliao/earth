@@ -39,7 +39,7 @@ router.beforeEach((to, from, next) => {
         document.querySelector("html").style.overflow = 'hidden';
         next();
     } else if (to.path !== '/home/detail') {
-        document.querySelector("html").style.overflow = "auto";
+        document.querySelector("html").style.overflow = "inherit";
         next();
     }
 })

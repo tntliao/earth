@@ -81,10 +81,12 @@ export default {
         }
       }
 
-      this.$router.push({
+      let page = this.$router.resolve({
         path: "/home/detail/news",
         query: { index, detailVal },
       });
+
+      window.open(page.href, "_blank");
     },
     getDetail: function () {
       this.isLoading = true;

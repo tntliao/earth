@@ -24,7 +24,6 @@ export default {
   data() {
     return {
       isActive: false,
-      userName: jwt.verify(this.$route.query.username, "gdgxjsjljj"),
     };
   },
   mounted() {
@@ -40,11 +39,21 @@ export default {
         type: "warning",
       }).then(() => {
         this.$router.replace("login");
+        localStorage.removeItem("isLogin");
         this.$message({
           type: "success",
           message: "已退出登录!",
         });
       });
+    },
+  },
+  computed: {
+    userName: function () {
+      if (this.$route.query.username) {
+        return jwt.verify(this.$route.query.username, "gdgxjsjljj");
+      } else {
+        return "";
+      }
     },
   },
 };
