@@ -169,15 +169,56 @@ export default {
 
       if (
         _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.11
+      ) {
+        rotate_node.style.transform = "rotate(18deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.12
+      ) {
+        rotate_node.style.transform = "rotate(36deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.13
+      ) {
+        rotate_node.style.transform = "rotate(54deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.14
+      ) {
+        rotate_node.style.transform = "rotate(72deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.15
+      ) {
+        rotate_node.style.transform = "rotate(90deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.16
+      ) {
+        rotate_node.style.transform = "rotate(108deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.17
+      ) {
+        rotate_node.style.transform = "rotate(126deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.18
+      ) {
+        rotate_node.style.transform = "rotate(144deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.19
+      ) {
+        rotate_node.style.transform = "rotate(162deg)";
+      } else if (
+        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
         _this.scrollTop <= _this.changeNodeTop_03 * 1.2
       ) {
-        let nowVal = _this.scrollTop - _this.changeNodeTop_03 * 1.1;
-        if (nowVal > 180) {
-          nowVal = 180;
-        } else if (nowVal < 0) {
-          nowVal = 0;
-        }
-        rotate_node.style.transform = `rotate(${nowVal}deg)`;
+        rotate_node.style.transform = "rotate(180deg)";
+      } else if (_this.scrollTop < _this.changeNodeTop_03) {
+        rotate_node.style.transform = "rotate(0deg)";
       }
     };
   },
@@ -197,7 +238,6 @@ export default {
     height: 34rem;
     border-bottom: 2px solid #ededed;
     box-sizing: content-box;
-
     video {
       width: 100%;
       height: 100%;
@@ -339,6 +379,7 @@ export default {
         width: 31rem;
         height: 31rem;
         img {
+          transition: 1s;
           width: 100%;
           height: 100%;
         }
