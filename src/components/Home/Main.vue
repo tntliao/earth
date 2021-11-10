@@ -117,6 +117,7 @@ export default {
       changeNodeTop_03: "",
       scrollTop: "",
       maxVal: "",
+      wheelDelta: 0,
     };
   },
   methods: {
@@ -167,59 +168,37 @@ export default {
         _this.active_02 = false;
       }
 
-      if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.11
-      ) {
-        rotate_node.style.transform = "rotate(18deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.12
-      ) {
-        rotate_node.style.transform = "rotate(36deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.13
-      ) {
-        rotate_node.style.transform = "rotate(54deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.14
-      ) {
-        rotate_node.style.transform = "rotate(72deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.15
-      ) {
-        rotate_node.style.transform = "rotate(90deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.16
-      ) {
-        rotate_node.style.transform = "rotate(108deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.17
-      ) {
-        rotate_node.style.transform = "rotate(126deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.18
-      ) {
-        rotate_node.style.transform = "rotate(144deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.19
-      ) {
-        rotate_node.style.transform = "rotate(162deg)";
-      } else if (
-        _this.scrollTop >= _this.changeNodeTop_03 * 1.1 &&
-        _this.scrollTop <= _this.changeNodeTop_03 * 1.2
-      ) {
-        rotate_node.style.transform = "rotate(180deg)";
-      } else if (_this.scrollTop < _this.changeNodeTop_03) {
-        rotate_node.style.transform = "rotate(0deg)";
+      let st = _this.scrollTop;
+      let cnt = _this.changeNodeTop_03;
+      let cnt1_1 = cnt * 1.13;
+      function deg(val) {
+        return (rotate_node.style.transform = `rotate(${val}deg)`);
       }
+      (function () {
+        if (st >= cnt1_1 && st <= cnt * 1.14) {
+          deg(18 * 1);
+        } else if (st >= cnt1_1 && st <= cnt * 1.15) {
+          deg(18 * 2);
+        } else if (st >= cnt1_1 && st <= cnt * 1.16) {
+          deg(18 * 3);
+        } else if (st >= cnt1_1 && st <= cnt * 1.17) {
+          deg(18 * 4);
+        } else if (st >= cnt1_1 && st <= cnt * 1.18) {
+          deg(18 * 5);
+        } else if (st >= cnt1_1 && st <= cnt * 1.19) {
+          deg(18 * 6);
+        } else if (st >= cnt1_1 && st <= cnt * 1.2) {
+          deg(18 * 7);
+        } else if (st >= cnt1_1 && st <= cnt * 1.21) {
+          deg(18 * 8);
+        } else if (st >= cnt1_1 && st <= cnt * 1.22) {
+          deg(18 * 9);
+        } else if (st >= cnt1_1 && st <= cnt * 1.23) {
+          deg(18 * 10);
+        } else if (st < cnt) {
+          deg(0);
+        }
+      })();
     };
   },
   destroyed() {
@@ -358,6 +337,7 @@ export default {
 .change {
   float: left;
   width: 100%;
+  height: 200rem;
   padding-top: 1rem;
   background-color: rgb(0, 0, 0);
 
