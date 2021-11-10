@@ -94,7 +94,11 @@
         </div>
         <div class="shelter"></div>
         <div class="img_right">
-          <img src="../../assets/images/contrast/03_contrast_1.png" alt="" />
+          <img
+            ref="rotate_node"
+            src="../../assets/images/contrast/03_contrast_1.png"
+            alt=""
+          />
         </div>
       </div>
     </div>
@@ -130,6 +134,7 @@ export default {
   },
   mounted() {
     const _this = this;
+    const rotate_node = _this.$refs.rotate_node;
     const changeNode = document.getElementsByClassName("change_item");
     window.timer = setInterval(() => {
       this.changeNodeTop_01 =
@@ -167,8 +172,12 @@ export default {
         _this.scrollTop <= _this.changeNodeTop_03 * 1.2
       ) {
         let nowVal = _this.scrollTop - _this.changeNodeTop_03 * 1.1;
-        let proportion = nowVal / _this.maxVal;
-        console.log(proportion);
+        if (nowVal > 180) {
+          nowVal = 180;
+        } else if (nowVal < 0) {
+          nowVal = 0;
+        }
+        rotate_node.style.transform = `rotate(${nowVal}deg)`;
       }
     };
   },
