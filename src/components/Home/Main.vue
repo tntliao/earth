@@ -96,6 +96,7 @@
         <div class="img_right">
           <img
             ref="rotate_node"
+            :class="{ active: active_03 }"
             src="../../assets/images/contrast/03_contrast_1.png"
             alt=""
           />
@@ -112,12 +113,11 @@ export default {
     return {
       active_01: false,
       active_02: false,
+      active_03: false,
       changeNodeTop_01: "",
       changeNodeTop_02: "",
       changeNodeTop_03: "",
       scrollTop: "",
-      maxVal: "",
-      wheelDelta: 0,
     };
   },
   methods: {
@@ -135,16 +135,11 @@ export default {
   },
   mounted() {
     const _this = this;
-    const rotate_node = _this.$refs.rotate_node;
     const changeNode = document.getElementsByClassName("change_item");
     window.timer = setInterval(() => {
-      this.changeNodeTop_01 =
-        changeNode[0].offsetTop - changeNode[0].offsetTop * 0.125;
-      this.changeNodeTop_02 =
-        changeNode[1].offsetTop - changeNode[1].offsetTop * 0.09;
-      this.changeNodeTop_03 =
-        changeNode[1].offsetTop - changeNode[1].offsetTop * 0.07;
-      _this.maxVal = _this.scrollTop - _this.changeNodeTop_03 * 1.1;
+      this.changeNodeTop_01 = changeNode[0].offsetTop * 0.9;
+      this.changeNodeTop_02 = changeNode[1].offsetTop * 0.9;
+      this.changeNodeTop_03 = changeNode[2].offsetTop * 0.9;
     }, 1000);
 
     window.onscroll = function () {
@@ -168,37 +163,14 @@ export default {
         _this.active_02 = false;
       }
 
-      let st = _this.scrollTop;
-      let cnt = _this.changeNodeTop_03;
-      let cnt1_1 = cnt * 1.13;
-      function deg(val) {
-        return (rotate_node.style.transform = `rotate(${val}deg)`);
+      if (
+        _this.scrollTop >= _this.changeNodeTop_03 &&
+        _this.scrollTop <= _this.changeNodeTop_03 * 1.25
+      ) {
+        _this.active_03 = true;
+      } else {
+        _this.active_03 = false;
       }
-      (function () {
-        if (st >= cnt1_1 && st <= cnt * 1.14) {
-          deg(18 * 1);
-        } else if (st >= cnt1_1 && st <= cnt * 1.15) {
-          deg(18 * 2);
-        } else if (st >= cnt1_1 && st <= cnt * 1.16) {
-          deg(18 * 3);
-        } else if (st >= cnt1_1 && st <= cnt * 1.17) {
-          deg(18 * 4);
-        } else if (st >= cnt1_1 && st <= cnt * 1.18) {
-          deg(18 * 5);
-        } else if (st >= cnt1_1 && st <= cnt * 1.19) {
-          deg(18 * 6);
-        } else if (st >= cnt1_1 && st <= cnt * 1.2) {
-          deg(18 * 7);
-        } else if (st >= cnt1_1 && st <= cnt * 1.21) {
-          deg(18 * 8);
-        } else if (st >= cnt1_1 && st <= cnt * 1.22) {
-          deg(18 * 9);
-        } else if (st >= cnt1_1 && st <= cnt * 1.23) {
-          deg(18 * 10);
-        } else if (st < cnt) {
-          deg(0);
-        }
-      })();
     };
   },
   destroyed() {
@@ -211,6 +183,7 @@ export default {
 .main_container {
   width: 100%;
   overflow-x: hidden;
+  transform: translateY();
 
   .banner {
     width: 100%;
@@ -337,14 +310,14 @@ export default {
 .change {
   float: left;
   width: 100%;
-  height: 200rem;
+  height: 132rem;
   padding-top: 1rem;
   background-color: rgb(0, 0, 0);
 
   .change_item {
     width: 78rem;
-    height: 28rem;
-    margin: 10rem auto 0;
+    height: 30rem;
+    margin: 11rem auto 0;
     color: white;
     position: relative;
 
@@ -352,6 +325,7 @@ export default {
       margin-bottom: 10rem;
     }
     &:nth-of-type(3) {
+      transition: 0.5s;
       height: 34rem;
       padding-bottom: 3rem;
       .img_right {
@@ -359,9 +333,13 @@ export default {
         width: 31rem;
         height: 31rem;
         img {
-          transition: 1s;
+          transition: 3s;
           width: 100%;
           height: 100%;
+          &.active {
+            transform: rotate(180deg);
+            visibility: visible;
+          }
         }
       }
       .shelter {
@@ -376,7 +354,7 @@ export default {
       }
     }
     img {
-      height: 24rem;
+      height: 27rem;
       transition: 1s;
       position: absolute;
       top: 0;
@@ -421,15 +399,15 @@ export default {
     /*  */
     .img_right {
       position: absolute;
-      width: 38rem;
-      height: 24rem;
-      right: 10rem;
+      width: 43rem;
+      height: 27rem;
+      right: 0;
     }
     .img_left {
       position: absolute;
-      width: 38rem;
-      height: 24rem;
-      left: 10rem;
+      width: 43rem;
+      height: 27rem;
+      left: 0;
       overflow: hidden;
 
       .garbage {
@@ -438,7 +416,7 @@ export default {
         z-index: 9999;
 
         &:nth-of-type(1) {
-          top: 16rem;
+          top: 18rem;
           left: 3rem;
           &.active {
             left: -20rem;
@@ -446,24 +424,24 @@ export default {
         }
         &:nth-of-type(2) {
           opacity: 1;
-          top: 18rem;
+          top: 20rem;
           left: 11rem;
           &.active {
             left: -20rem;
           }
         }
         &:nth-of-type(3) {
-          top: 16rem;
-          left: 21rem;
+          top: 18rem;
+          left: 25rem;
           &.active {
-            left: 40rem;
+            left: 50rem;
           }
         }
         &:nth-of-type(4) {
-          top: 18rem;
-          left: 28rem;
+          top: 20rem;
+          left: 34rem;
           &.active {
-            left: 40rem;
+            left: 50rem;
           }
         }
       }

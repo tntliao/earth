@@ -96,4 +96,14 @@ export default {
     transform: translateY(-50%) rotate(360deg);
   }
 }
+
+@media screen and (max-width: 821px) {
+  .footer {
+    height: 24rem;
+    .footer_left,
+    .footer_right {
+      height: 15rem;
+    }
+  }
+}
 </style>
