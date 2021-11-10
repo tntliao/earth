@@ -92,7 +92,7 @@
           <p class="detail">保护我们的下一代</p>
           <p class="detail">共爱地球一个家</p>
         </div>
-        <div class="shelter"></div>
+        <div class="shelter" :class="{ active: active_03 }"></div>
         <div class="img_right">
           <img
             ref="rotate_node"
@@ -156,7 +156,7 @@ export default {
 
       if (
         _this.scrollTop >= _this.changeNodeTop_02 &&
-        _this.scrollTop <= _this.changeNodeTop_02 * 1.25
+        _this.scrollTop <= _this.changeNodeTop_02 * 1.3
       ) {
         _this.active_02 = true;
       } else {
@@ -310,7 +310,7 @@ export default {
 .change {
   float: left;
   width: 100%;
-  height: 132rem;
+  height: 138rem;
   padding-top: 1rem;
   background-color: rgb(0, 0, 0);
 
@@ -330,8 +330,8 @@ export default {
       padding-bottom: 3rem;
       .img_right {
         top: -4rem;
-        width: 31rem;
-        height: 31rem;
+        width: 40rem;
+        height: 40rem;
         img {
           transition: 3s;
           width: 100%;
@@ -345,12 +345,17 @@ export default {
       .shelter {
         position: absolute;
         width: 50rem;
-        height: 26rem;
+        height: 21rem;
         right: 0;
         z-index: 9999;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgb(0, 0, 0);
         bottom: 0;
         transition: 0.5s;
+        transition-delay: 2s;
+        opacity: 0.7;
+        &.active {
+          opacity: 1;
+        }
       }
     }
     img {
@@ -391,8 +396,11 @@ export default {
     /*  */
     .item_title {
       font-size: 3rem;
+      transition: 0.5s;
     }
     .detail {
+      transition: 0.5s;
+      font-size: 1.8rem;
       margin-top: 2rem;
       margin-left: 6rem;
     }

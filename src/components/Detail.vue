@@ -24,7 +24,7 @@
               <img src="../assets/images/login/02_login_icon.png" alt="" />
               <p class="name">保护地球环境</p>
             </div>
-            <p class="time">2021-10-23</p>
+            <p class="time">{{ item.time }}</p>
           </div>
         </div>
       </div>
@@ -91,12 +91,8 @@ export default {
     getDetail: function () {
       this.isLoading = true;
       const nowData = this.detailData[this.val];
-      var moreData;
-      if (this.val === "0") {
-        moreData = this.backupData;
-      } else {
-        moreData = [];
-      }
+      let moreData = this.backupData[this.val];
+
       setTimeout(() => {
         this.isLoading = false;
         if (moreData.length > 0) {
@@ -105,6 +101,7 @@ export default {
               id: nanoid(),
               imgurl: item.imgurl,
               title: item.title,
+              time: item.time,
             };
             return newItem;
           });
@@ -218,6 +215,7 @@ export default {
         height: 15rem;
         overflow: hidden;
         img {
+          width: 100%;
           height: 100%;
           transition: 0.5s;
         }
