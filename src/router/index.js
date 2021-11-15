@@ -3,6 +3,7 @@ import Login from '../components/Login.vue';
 import Home from '../components/Home';
 import Detail from '../components/Detail.vue';
 import News from '../components/News.vue'
+import Review from '../components/Review.vue';
 const router = new VueRouter({
     mode: 'hash',
     base: process.env.BASE_URL,
@@ -26,6 +27,10 @@ const router = new VueRouter({
         {
             path: '/home/detail/news',
             component: News
+        },
+        {
+            path: '/home/review',
+            component: Review
         },
         {
             path: '/',

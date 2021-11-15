@@ -100,6 +100,14 @@
             src="../../assets/images/contrast/03_contrast_1.png"
             alt=""
           />
+
+          <router-link
+            target="_blank"
+            to="/home/review"
+            class="review"
+            :class="{ active: active_03 }"
+            >保护地球</router-link
+          >
         </div>
       </div>
     </div>
@@ -341,6 +349,29 @@ export default {
             visibility: visible;
           }
         }
+        .review {
+          display: block;
+          font-size: 1.5rem;
+          color: white;
+          border-radius: 0.1rem;
+          position: absolute;
+          left: 50%;
+          top: 60%;
+          text-decoration: none;
+          text-align: center;
+          transform: translate(-50%, -50%);
+          z-index: 9999;
+          opacity: 0;
+          visibility: hidden;
+          transition: 0.5s;
+          &.active {
+            opacity: 1;
+            visibility: inherit;
+          }
+          &:hover {
+            animation: ftmove 0.8s;
+          }
+        }
       }
       .shelter {
         position: absolute;
@@ -466,6 +497,20 @@ export default {
   }
   100% {
     transform: scale(1);
+  }
+}
+@keyframes ftmove {
+  0% {
+    font-size: 1.5rem;
+    color: white;
+  }
+  50% {
+    font-size: 2rem;
+    color: #ffa300;
+  }
+  100% {
+    font-size: 1.5rem;
+    color: white;
   }
 }
 </style>
