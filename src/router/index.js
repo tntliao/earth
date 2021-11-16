@@ -32,9 +32,6 @@ const router = new VueRouter({
         {
             path: '/home/review',
             component: Review,
-            meta: {
-                keepAlive: true
-            }
         },
         {
             path: '/home/earth_day',

@@ -134,6 +134,7 @@ export default {
       const height = itemNode.offsetHeight;
       const left = itemNode.offsetLeft;
       const top = itemNode.offsetTop - document.documentElement.scrollTop;
+      console.log(width, height, left, top);
       this.$router.push({
         path: "/home/detail",
         query: { val, left, top, width, height },

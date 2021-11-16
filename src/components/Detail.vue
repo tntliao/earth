@@ -1,10 +1,24 @@
 <template>
   <div class="detail_container">
     <div class="left" :style="styObj">
-      <img src="../assets/images/public/exit.png" alt="" @click="goBack" />
-      <img :src="detailInfo[val].imgurl" alt="" srcset="" />
-      <h2 class="left_title">{{ detailInfo[val].title }}</h2>
-      <p class="left_detail">{{ detailInfo[val].detail }}</p>
+      <img
+        src="../assets/images/public/exit.png"
+        alt=""
+        @click="goBack"
+        :class="{ hidden: isHidden }"
+      />
+      <img
+        :src="detailInfo[val].imgurl"
+        alt=""
+        srcset=""
+        :class="{ haha: isHaha }"
+      />
+      <h2 class="left_title" :class="{ hidden: isHidden }">
+        {{ detailInfo[val].title }}
+      </h2>
+      <p class="left_detail" :class="{ hidden: isHidden }">
+        {{ detailInfo[val].detail }}
+      </p>
     </div>
     <div class="right" :class="{ active: isActive }">
       <h2 class="right_title">新闻</h2>
@@ -44,6 +58,8 @@ export default {
       isActive: false,
       val: this.$route.query.val,
       isLoading: false,
+      isHidden: false,
+      isHaha: false,
       styObj: {
         width: this.$route.query.width + "px",
         height: this.$route.query.height + "px",
@@ -61,15 +77,20 @@ export default {
   mixins: [mixins],
   methods: {
     goBack: function () {
+      this.isActive = false;
+      this.isHidden = true;
       setTimeout(() => {
-        this.isActive = false;
+        this.styObj = this.styObj2;
         setTimeout(() => {
-          this.styObj = this.styObj2;
-          setTimeout(() => {
-            this.$router.back();
-          }, 500);
+          this.$router.back();
         }, 500);
-      });
+        setTimeout(() => {
+          document.querySelector(".right").style.display = "none";
+          setTimeout(() => {
+            this.isHaha = true;
+          }, 40);
+        }, 10);
+      }, 500);
     },
     goNews: function (index, detailVal) {
       switch (detailVal) {
@@ -150,13 +171,12 @@ export default {
 .detail_container {
   box-sizing: border-box;
   position: relative;
-
   .left {
     min-width: 150px;
     position: fixed;
     background: white;
     overflow: hidden;
-    transition: 0.5s;
+    transition: 0.5s ease-out;
     border-radius: 0.4rem;
     margin: 1rem;
     box-sizing: border-box;
@@ -168,13 +188,22 @@ export default {
         top: 2rem;
         width: 1.7rem;
         cursor: pointer;
+        &.hidden {
+          visibility: hidden;
+        }
       }
       &:nth-of-type(2) {
         margin: 5rem 2rem 0;
         width: 21rem;
         height: 15rem;
         background-size: cover;
-        transition: 0.5s;
+        transition: 0.5s, opacity 0.7s;
+        &.haha {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          opacity: 0;
+        }
       }
     }
     .left_title {
@@ -182,10 +211,16 @@ export default {
       text-align: center;
       font-size: 2.5rem;
       transition: 0.5s;
+      &.hidden {
+        visibility: hidden;
+      }
     }
     .left_detail {
       margin: 1rem 2rem 0;
       font-size: 1rem;
+      &.hidden {
+        visibility: hidden;
+      }
     }
   }
   .right {

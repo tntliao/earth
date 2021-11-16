@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="day_container">
-      <div class="day_content" :style="styObj">
-        <h1 @click="haha">回退</h1>
-      </div>
+      <div class="day_content" :style="styObj"></div>
     </div>
   </div>
 </template>
@@ -19,12 +17,6 @@ export default {
         left: this.$route.query.left + "px",
         top: this.$route.query.top + "px",
       },
-      styOb2: {
-        width: this.$route.query.width + "px",
-        height: this.$route.query.height + "px",
-        left: this.$route.query.left + "px",
-        top: this.$route.query.top + "px",
-      },
     };
   },
   mounted() {
@@ -35,14 +27,7 @@ export default {
       this.styObj.top = 0;
     }, 40);
   },
-  methods: {
-    haha: function () {
-      this.styObj = this.styOb2;
-      setTimeout(() => {
-        this.$router.go(-1);
-      }, 650);
-    },
-  },
+  methods: {},
 };
 </script>
 
