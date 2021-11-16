@@ -1,7 +1,6 @@
 <template>
   <div class="main_container">
     <div class="banner">
-      <!-- poster="../../assets/video/cover.png" -->
       <video src="../../assets/video/01_banner.mp4" muted autoplay loop></video>
     </div>
     <div class="earth_container">
@@ -9,22 +8,22 @@
       <div class="item" @click="goDetail(0)">
         <h3 class="item_title">海洋</h3>
         <p class="deatil">约占地球表面积的71%</p>
-        <img src="../../assets/images/banner/01_banner.png" alt="" />
+        <img src="../../assets/images/banner/01_banner.jpg" alt="" />
       </div>
       <div class="item" @click="goDetail(1)">
         <h3 class="item_title">冰川</h3>
         <p class="deatil">两年融化一座珠穆朗玛峰的量</p>
-        <img src="../../assets/images/banner/02_banner.png" alt="" />
+        <img src="../../assets/images/banner/02_banner.jpg" alt="" />
       </div>
       <div class="item" @click="goDetail(2)">
         <h3 class="item_title">沙漠</h3>
         <p class="deatil">破坏土地平衡变成沙子</p>
-        <img src="../../assets/images/banner/03_banner.png" alt="" />
+        <img src="../../assets/images/banner/03_banner.jpg" alt="" />
       </div>
       <div class="item" @click="goDetail(3)">
         <h3 class="item_title">雨林</h3>
         <p class="deatil">每年减少约1700公顷</p>
-        <img src="../../assets/images/banner/04_banner.png" alt="" />
+        <img src="../../assets/images/banner/04_banner.jpg" alt="" />
       </div>
     </div>
     <div class="slogan">
@@ -101,12 +100,19 @@
             alt=""
           />
 
-          <router-link
-            to="/home/review"
-            class="review"
-            :class="{ active: active_03 }"
-            >我为地球想说</router-link
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="点击可进入"
+            placement="bottom"
           >
+            <router-link
+              to="/home/review"
+              class="review"
+              :class="{ active: active_03 }"
+              >地球环境恶化</router-link
+            >
+          </el-tooltip>
         </div>
       </div>
     </div>
@@ -134,7 +140,6 @@ export default {
       const height = itemNode.offsetHeight;
       const left = itemNode.offsetLeft;
       const top = itemNode.offsetTop - document.documentElement.scrollTop;
-      console.log(width, height, left, top);
       this.$router.push({
         path: "/home/detail",
         query: { val, left, top, width, height },
@@ -304,7 +309,7 @@ export default {
   height: 20rem;
   float: left;
   margin-top: 1rem;
-  background-image: url("../../assets/images/banner/04_banner.jpg");
+  background-image: url("../../assets/images/banner/05_banner.jpg");
   background-size: cover;
   position: relative;
 
@@ -384,10 +389,10 @@ export default {
       }
       .shelter {
         position: absolute;
-        width: 40rem;
+        width: 45rem;
         height: 21rem;
         right: 0;
-        z-index: 9999;
+        z-index: 100;
         background: rgb(0, 0, 0);
         bottom: 0;
         transition: 0.5s;

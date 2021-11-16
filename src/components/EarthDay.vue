@@ -37,7 +37,8 @@ export default {
   .day_content {
     position: absolute;
     transition: 0.7s;
-    background: pink;
+    background-image: url("../assets/images/review/big_earth_day.jpg");
+    background-size: cover;
   }
 }
 </style>

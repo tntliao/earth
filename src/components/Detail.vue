@@ -66,7 +66,7 @@ export default {
         left: this.$route.query.left + "px",
         top: this.$route.query.top + "px",
       },
-      styObj2: {
+      defaultStyle: {
         width: this.$route.query.width + "px",
         height: this.$route.query.height + "px",
         left: this.$route.query.left + "px",
@@ -80,7 +80,7 @@ export default {
       this.isActive = false;
       this.isHidden = true;
       setTimeout(() => {
-        this.styObj = this.styObj2;
+        this.styObj = this.defaultStyle;
         setTimeout(() => {
           this.$router.back();
         }, 500);
@@ -154,6 +154,20 @@ export default {
     },
   },
   mounted() {
+    if (window.navigator.onLine === true) {
+      this.$message({
+        message: "网络顺畅，可获得最佳体验",
+        type: "success",
+        center: true,
+      });
+    } else {
+      this.$message({
+        message: "网络异常，无法获得最佳体验",
+        type: "warning",
+        center: true,
+      });
+    }
+
     setTimeout(() => {
       this.styObj.width = 25 + "%";
       this.styObj.height = 96 + "vh";
@@ -174,7 +188,7 @@ export default {
   .left {
     min-width: 150px;
     position: fixed;
-    background: white;
+    background: rgb(255, 255, 255);
     overflow: hidden;
     transition: 0.5s ease-out;
     border-radius: 0.4rem;

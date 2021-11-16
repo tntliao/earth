@@ -66,20 +66,25 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.up {
-  height: 100%;
-  width: 100%;
-  background-color: #dddddd;
-  text-align: center;
-  line-height: 40px;
-  padding: 0.7rem 1rem;
-  color: #ffffff;
-  border-radius: 0.2rem;
-  transition: 0.5s;
-  &:hover {
-    color: #ffa300;
+.hidden {
+  margin-right: 5rem;
+  .up {
+    height: 100%;
+    width: 100%;
+    background-color: #dddddd;
+    text-align: center;
+
+    line-height: 40px;
+    padding: 0.7rem 1rem;
+    color: #ffffff;
+    border-radius: 0.2rem;
+    transition: 0.5s;
+    &:hover {
+      color: #ffa300;
+    }
   }
 }
+
 .news_container {
   background: white;
   width: 100%;

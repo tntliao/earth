@@ -7,9 +7,9 @@
             <img src="../assets/images/review/01_review.png" alt="" />
           </div>
           <div class="p_item_right">
-            <h2>我是地球</h2>
+            <h2>这是地球</h2>
             <p>
-              已经不停歇地转到45亿多年,习惯我的富饶和慷慨，切忽视了我的脆弱,人类的繁衍生息和不断发展，让我出现的问题：
+              已经不停歇地转到45亿多年,人类的繁衍生息和不断发展，让它出现了众多的问题：
             </p>
           </div>
         </div>
@@ -118,7 +118,7 @@ export default {
     }, 1000);
     window.node = document.querySelector(".review_content");
     window.wheelFun = function (event) {
-      window.node.scrollLeft += event.deltaY + 85;
+      window.node.scrollLeft += event.deltaY + 40;
     };
     window.node.addEventListener("wheel", window.wheelFun);
 
@@ -149,7 +149,7 @@ export default {
         item_img_node.offsetLeft + item_06.offsetLeft - window.node.scrollLeft;
       let top = item_img_node.offsetTop + item_06.offsetTop;
 
-      this.$router.push({
+      this.$router.replace({
         path: "/home/earth_day",
         query: { left, top, width, height },
       });

@@ -143,7 +143,7 @@ export default {
   overflow: hidden;
   box-sizing: border-box;
   background-size: cover;
-  background-image: url("../assets/images/login/03_login_bg.png");
+  background-image: url("../assets/images/login/03_login_bg.jpg");
 
   .login_container {
     display: flex;
