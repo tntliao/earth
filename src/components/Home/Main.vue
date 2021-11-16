@@ -149,6 +149,15 @@ export default {
       this.changeNodeTop_03 = changeNode[2].offsetTop * 0.9;
     }, 1000);
 
+    if (
+      _this.scrollTop >= _this.changeNodeTop_03 &&
+      _this.scrollTop <= _this.changeNodeTop_03 * 1.25
+    ) {
+      _this.active_03 = true;
+    } else {
+      _this.active_03 = false;
+    }
+
     window.onscroll = function () {
       _this.scrollTop = document.documentElement.scrollTop;
 
@@ -222,7 +231,7 @@ export default {
       position: relative;
       cursor: pointer;
       border-radius: 0.2rem;
-      animation: move 0.7s;
+      // animation: move 0.7s;
 
       .item_title {
         position: absolute;

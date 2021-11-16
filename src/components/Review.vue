@@ -9,7 +9,7 @@
           <div class="p_item_right">
             <h2>我是地球</h2>
             <p>
-              我已经不停歇地转到45亿多年了,就习惯我的富饶和慷慨，切忽视了我的脆弱,人类的繁衍生息和不断发展，人们将地球渐渐变得残缺不堪，而地球也渐渐不再象当初那样充满活力
+              已经不停歇地转到45亿多年,习惯我的富饶和慷慨，切忽视了我的脆弱,人类的繁衍生息和不断发展，让我出现的问题：
             </p>
           </div>
         </div>
@@ -24,63 +24,62 @@
             ></video>
           </div>
           <div class="p_item_right">
-            <h2>减少室温气体</h2>
-            <p>
-              森林 草原 湿地 海洋 土壤 冻土 岩溶
-              是二氧化碳的吸收器和贮存库，保护它们就是保护你们自己
-            </p>
+            <h2>室温气体汇集</h2>
           </div>
         </div>
         <div class="item" :class="{ active: item_03_isActive }">
           <div class="p_item_left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-            expedita, soluta nesciunt delectus quo perspiciatis, dolorem ea
-            consectetur natus iusto aliquam consequatur deserunt? Harum, ad
-            illum quisquam reiciendis soluta veritatis!
+            <video
+              class="videoNode"
+              src="../assets/video/03_review.mp4"
+              muted
+              autoplay
+              loop
+            ></video>
           </div>
           <div class="p_item_right">
-            <p>{{ item_03_left }}</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iste
-              sapiente exercitationem optio amet. Voluptates cumque cum deleniti
-              veniam eum perspiciatis totam repellendus, tempora sint
-              accusantium officiis dignissimos quibusdam necessitatibus.
-            </p>
+            <h2>全球变暖</h2>
           </div>
         </div>
         <div class="item" :class="{ active: item_04_isActive }">
           <div class="p_item_left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-            expedita, soluta nesciunt delectus quo perspiciatis, dolorem ea
-            consectetur natus iusto aliquam consequatur deserunt? Harum, ad
-            illum quisquam reiciendis soluta veritatis!
+            <video
+              class="videoNode"
+              src="../assets/video/05_review.mp4"
+              muted
+              autoplay
+              loop
+            ></video>
           </div>
           <div class="p_item_right">
-            <p>{{ item_04_left }}</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iste
-              sapiente exercitationem optio amet. Voluptates cumque cum deleniti
-              veniam eum perspiciatis totam repellendus, tempora sint
-              accusantium officiis dignissimos quibusdam necessitatibus.
-            </p>
+            <h2>气候异常</h2>
           </div>
         </div>
         <div class="item" :class="{ active: item_05_isActive }">
           <div class="p_item_left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-            expedita, soluta nesciunt delectus quo perspiciatis, dolorem ea
-            consectetur natus iusto aliquam consequatur deserunt? Harum, ad
-            illum quisquam reiciendis soluta veritatis!
+            <video
+              class="videoNode"
+              src="../assets/video/04_review.mp4"
+              muted
+              autoplay
+              loop
+            ></video>
           </div>
           <div class="p_item_right">
-            <p>{{ item_05_left }}</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iste
-              sapiente exercitationem optio amet. Voluptates cumque cum deleniti
-              veniam eum perspiciatis totam repellendus, tempora sint
-              accusantium officiis dignissimos quibusdam necessitatibus.
-            </p>
+            <h2>冰川融化</h2>
           </div>
+        </div>
+        <div
+          class="item"
+          :class="{ active: item_06_isActive }"
+          @click="earth_day"
+        >
+          <img
+            class="item_img_node"
+            src="../assets/images/review/earth_day.jpg"
+            :class="{ active: item_06_isActive }"
+            alt=""
+          />
         </div>
       </div>
     </div>
@@ -96,9 +95,11 @@ export default {
       item_03_isActive: false,
       item_04_isActive: false,
       item_05_isActive: false,
+      item_06_isActive: false,
       item_03_left: "",
       item_04_left: "",
       item_05_left: "",
+      item_06_left: "",
       scrollLeft: "",
     };
   },
@@ -113,10 +114,11 @@ export default {
       this.item_03_left = window.itemNode[1].offsetLeft * 0.8;
       this.item_04_left = window.itemNode[2].offsetLeft * 0.8;
       this.item_05_left = window.itemNode[3].offsetLeft * 0.8;
+      this.item_06_left = window.itemNode[4].offsetLeft * 0.8;
     }, 1000);
     window.node = document.querySelector(".review_content");
     window.wheelFun = function (event) {
-      window.node.scrollLeft += event.deltaY;
+      window.node.scrollLeft += event.deltaY + 85;
     };
     window.node.addEventListener("wheel", window.wheelFun);
 
@@ -131,8 +133,27 @@ export default {
       if (_this.scrollLeft > _this.item_05_left) {
         _this.item_05_isActive = true;
       }
+      if (_this.scrollLeft > _this.item_06_left) {
+        _this.item_06_isActive = true;
+      }
     };
     window.review_content.addEventListener("scroll", window.scrollFun);
+  },
+  methods: {
+    earth_day: function () {
+      let item_06 = window.itemNode[5];
+      let item_img_node = document.getElementsByClassName("item_img_node")[0];
+      let width = item_img_node.offsetWidth;
+      let height = item_img_node.offsetHeight;
+      let left =
+        item_img_node.offsetLeft + item_06.offsetLeft - window.node.scrollLeft;
+      let top = item_img_node.offsetTop + item_06.offsetTop;
+
+      this.$router.push({
+        path: "/home/earth_day",
+        query: { left, top, width, height },
+      });
+    },
   },
   deactivated() {
     window.node.removeEventListener("wheel", window.wheelFun);
@@ -156,7 +177,6 @@ export default {
       flex-shrink: 0;
       display: flex;
       .item {
-        border: 1px solid rgb(255, 255, 255);
         width: 65rem;
         height: 100%;
         flex-shrink: 0;
@@ -171,7 +191,6 @@ export default {
         &.active {
           transform: translateX(0);
         }
-
         .p_item_left {
           width: 30rem;
           height: 100%;
@@ -221,7 +240,10 @@ export default {
             }
           }
         }
-        &:nth-of-type(2) {
+        &:nth-of-type(2),
+        &:nth-of-type(3),
+        &:nth-of-type(4),
+        &:nth-of-type(5) {
           .p_item_left {
             width: 40rem;
             .videoNode {
@@ -232,7 +254,22 @@ export default {
           }
           .p_item_right {
             width: 25rem;
+            h2 {
+              margin-left: 2rem;
+            }
           }
+        }
+        &:nth-of-type(6) {
+          width: 40rem;
+          img {
+            border-radius: 0.2rem;
+            transition: 0.5s;
+            width: 100%;
+            &.active {
+              animation: earth_day 3s infinite;
+            }
+          }
+          cursor: pointer;
         }
       }
     }
@@ -254,27 +291,21 @@ export default {
     transform: rotate(360deg);
   }
 }
-@keyframes img_01 {
+@keyframes earth_day {
   0% {
-    opacity: 0;
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.03);
   }
   50% {
-    opacity: 1;
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
   }
   100% {
-    opacity: 0;
-  }
-}
-
-@keyframes img_02 {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+    transform: scale(1);
   }
 }
 </style>

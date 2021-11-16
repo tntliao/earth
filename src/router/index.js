@@ -4,6 +4,7 @@ import Home from '../components/Home';
 import Detail from '../components/Detail.vue';
 import News from '../components/News.vue'
 import Review from '../components/Review.vue';
+import EarthDat from '../components/EarthDay.vue'
 const router = new VueRouter({
     mode: 'hash',
     base: process.env.BASE_URL,
@@ -30,7 +31,14 @@ const router = new VueRouter({
         },
         {
             path: '/home/review',
-            component: Review
+            component: Review,
+            meta: {
+                keepAlive: true
+            }
+        },
+        {
+            path: '/home/earth_day',
+            component: EarthDat
         },
         {
             path: '/',

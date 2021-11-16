@@ -50,12 +50,26 @@ export default {
         left: this.$route.query.left + "px",
         top: this.$route.query.top + "px",
       },
+      styObj2: {
+        width: this.$route.query.width + "px",
+        height: this.$route.query.height + "px",
+        left: this.$route.query.left + "px",
+        top: this.$route.query.top + "px",
+      },
     };
   },
   mixins: [mixins],
   methods: {
     goBack: function () {
-      this.$router.back();
+      setTimeout(() => {
+        this.isActive = false;
+        setTimeout(() => {
+          this.styObj = this.styObj2;
+          setTimeout(() => {
+            this.$router.back();
+          }, 500);
+        }, 500);
+      });
     },
     goNews: function (index, detailVal) {
       switch (detailVal) {
