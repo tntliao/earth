@@ -102,11 +102,10 @@
           />
 
           <router-link
-            target="_blank"
             to="/home/review"
             class="review"
             :class="{ active: active_03 }"
-            >保护地球</router-link
+            >我为地球想说</router-link
           >
         </div>
       </div>
@@ -369,13 +368,13 @@ export default {
             visibility: inherit;
           }
           &:hover {
-            animation: ftmove 0.8s;
+            color: #ffa300;
           }
         }
       }
       .shelter {
         position: absolute;
-        width: 50rem;
+        width: 40rem;
         height: 21rem;
         right: 0;
         z-index: 9999;
@@ -497,20 +496,6 @@ export default {
   }
   100% {
     transform: scale(1);
-  }
-}
-@keyframes ftmove {
-  0% {
-    font-size: 1.5rem;
-    color: white;
-  }
-  50% {
-    font-size: 2rem;
-    color: #ffa300;
-  }
-  100% {
-    font-size: 1.5rem;
-    color: white;
   }
 }
 </style>
